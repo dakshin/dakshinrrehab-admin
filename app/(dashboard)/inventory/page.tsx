@@ -34,6 +34,205 @@ import { PlaceOrderModal } from "@/components/inventory/place-order-modal"
 
 // Sample data
 const inventoryItems = [
+  // Prosthetics
+  {
+    id: "PROS001",
+    name: "Below Knee Prosthetic Limb (Standard)",
+    category: "Prosthetics",
+    stockLevel: 3,
+    minLevel: 2,
+    status: "In Stock",
+    lastUpdated: "2024-01-15",
+    supplier: "Prosthetic Solutions Inc.",
+    location: "Prosthetics Workshop",
+    unitPrice: 25000.00,
+    hsnCode: "90211010",
+  },
+  {
+    id: "PROS002",
+    name: "Above Knee Prosthetic Limb (Advanced)",
+    category: "Prosthetics",
+    stockLevel: 1,
+    minLevel: 2,
+    status: "Low Stock",
+    lastUpdated: "2024-01-10",
+    supplier: "Prosthetic Solutions Inc.",
+    location: "Prosthetics Workshop",
+    unitPrice: 35000.00,
+    hsnCode: "90211010",
+  },
+  {
+    id: "PROS003",
+    name: "Prosthetic Socket Components",
+    category: "Prosthetics",
+    stockLevel: 8,
+    minLevel: 5,
+    status: "In Stock",
+    lastUpdated: "2024-01-12",
+    supplier: "Prosthetic Solutions Inc.",
+    location: "Prosthetics Workshop",
+    unitPrice: 8000.00,
+    hsnCode: "90212100",
+  },
+  {
+    id: "PROS004",
+    name: "Prosthetic Foot Components (SACH)",
+    category: "Prosthetics",
+    stockLevel: 5,
+    minLevel: 3,
+    status: "In Stock",
+    lastUpdated: "2024-01-08",
+    supplier: "Prosthetic Solutions Inc.",
+    location: "Prosthetics Workshop",
+    unitPrice: 6000.00,
+    hsnCode: "90212100",
+  },
+  // Orthotics
+  {
+    id: "ORTH001",
+    name: "Knee Ankle Foot Orthosis (KAFO)",
+    category: "Orthotics",
+    stockLevel: 4,
+    minLevel: 3,
+    status: "In Stock",
+    lastUpdated: "2024-01-14",
+    supplier: "Orthotic Care Ltd.",
+    location: "Orthotics Lab",
+    unitPrice: 12000.00,
+    hsnCode: "90211090",
+  },
+  {
+    id: "ORTH002",
+    name: "Ankle Foot Orthosis (AFO)",
+    category: "Orthotics",
+    stockLevel: 6,
+    minLevel: 4,
+    status: "In Stock",
+    lastUpdated: "2024-01-13",
+    supplier: "Orthotic Care Ltd.",
+    location: "Orthotics Lab",
+    unitPrice: 8000.00,
+    hsnCode: "90211090",
+  },
+  {
+    id: "ORTH003",
+    name: "Spinal Orthosis (TLSO)",
+    category: "Orthotics",
+    stockLevel: 2,
+    minLevel: 3,
+    status: "Low Stock",
+    lastUpdated: "2024-01-11",
+    supplier: "Orthotic Care Ltd.",
+    location: "Orthotics Lab",
+    unitPrice: 15000.00,
+    hsnCode: "90211090",
+  },
+  {
+    id: "ORTH004",
+    name: "Hand/Wrist Splints (Custom)",
+    category: "Orthotics",
+    stockLevel: 12,
+    minLevel: 8,
+    status: "In Stock",
+    lastUpdated: "2024-01-09",
+    supplier: "Orthotic Care Ltd.",
+    location: "Orthotics Lab",
+    unitPrice: 3000.00,
+    hsnCode: "90211090",
+  },
+  {
+    id: "ORTH005",
+    name: "Cervical Collars (Soft & Hard)",
+    category: "Orthotics",
+    stockLevel: 15,
+    minLevel: 10,
+    status: "In Stock",
+    lastUpdated: "2024-01-07",
+    supplier: "Orthotic Care Ltd.",
+    location: "Orthotics Lab",
+    unitPrice: 2500.00,
+    hsnCode: "90211090",
+  },
+  // Surgical Equipment
+  {
+    id: "SURG001",
+    name: "Surgical Scalpel Set (Disposable)",
+    category: "Surgical Equipment",
+    stockLevel: 50,
+    minLevel: 30,
+    status: "In Stock",
+    lastUpdated: "2024-01-16",
+    supplier: "SurgTech Medical",
+    location: "Operating Theater Storage",
+    unitPrice: 450.00,
+    hsnCode: "90183100",
+  },
+  {
+    id: "SURG002",
+    name: "Surgical Forceps (Hemostatic)",
+    category: "Surgical Equipment",
+    stockLevel: 8,
+    minLevel: 12,
+    status: "Low Stock",
+    lastUpdated: "2024-01-14",
+    supplier: "SurgTech Medical",
+    location: "Operating Theater Storage",
+    unitPrice: 1500.00,
+    hsnCode: "90183200",
+  },
+  {
+    id: "SURG003",
+    name: "Electrocautery Unit (Portable)",
+    category: "Surgical Equipment",
+    stockLevel: 2,
+    minLevel: 1,
+    status: "In Stock",
+    lastUpdated: "2024-01-12",
+    supplier: "SurgTech Medical",
+    location: "Operating Theater Storage",
+    unitPrice: 85000.00,
+    hsnCode: "90189090",
+  },
+  {
+    id: "SURG004",
+    name: "Surgical Sutures (Variety Pack)",
+    category: "Surgical Equipment",
+    stockLevel: 0,
+    minLevel: 20,
+    status: "Out of Stock",
+    lastUpdated: "2024-01-10",
+    supplier: "SurgTech Medical",
+    location: "Operating Theater Storage",
+    unitPrice: 2500.00,
+    hsnCode: "90183900",
+  },
+  {
+    id: "SURG005",
+    name: "Surgical Drapes (Sterile Pack)",
+    category: "Surgical Equipment",
+    stockLevel: 25,
+    minLevel: 15,
+    status: "In Stock",
+    lastUpdated: "2024-01-08",
+    supplier: "SurgTech Medical",
+    location: "Operating Theater Storage",
+    unitPrice: 800.00,
+    hsnCode: "39269099",
+  },
+  {
+    id: "SURG006",
+    name: "Anesthesia Equipment Set",
+    category: "Surgical Equipment",
+    stockLevel: 1,
+    minLevel: 1,
+    status: "In Stock",
+    lastUpdated: "2024-01-06",
+    supplier: "SurgTech Medical",
+    location: "Operating Theater Storage",
+    unitPrice: 125000.00,
+    hsnCode: "90192000",
+  },
+  // Existing items
   {
     id: "INV001",
     name: "Disposable Gloves (Box)",
@@ -45,6 +244,7 @@ const inventoryItems = [
     supplier: "MedSupply Co.",
     location: "Storage Room A",
     unitPrice: 8.99,
+    hsnCode: "40151900",
   },
   {
     id: "INV002",
@@ -57,6 +257,7 @@ const inventoryItems = [
     supplier: "PharmaDist Inc.",
     location: "Pharmacy Cabinet B",
     unitPrice: 12.5,
+    hsnCode: "30049099",
   },
   {
     id: "INV003",
@@ -69,6 +270,7 @@ const inventoryItems = [
     supplier: "MedTech Solutions",
     location: "Equipment Room",
     unitPrice: 89.99,
+    hsnCode: "90181900",
   },
   {
     id: "INV004",
@@ -81,6 +283,7 @@ const inventoryItems = [
     supplier: "MedSupply Co.",
     location: "Storage Room A",
     unitPrice: 15.99,
+    hsnCode: "63079000",
   },
   {
     id: "INV005",
@@ -93,6 +296,7 @@ const inventoryItems = [
     supplier: "PharmaDist Inc.",
     location: "Pharmacy Cabinet A",
     unitPrice: 22.75,
+    hsnCode: "30041000",
   },
   {
     id: "INV006",
@@ -105,6 +309,7 @@ const inventoryItems = [
     supplier: "MedSupply Co.",
     location: "Storage Room B",
     unitPrice: 5.5,
+    hsnCode: "90183100",
   },
   {
     id: "INV007",
@@ -117,6 +322,7 @@ const inventoryItems = [
     supplier: "MedSupply Co.",
     location: "Storage Room A",
     unitPrice: 18.25,
+    hsnCode: "48189090",
   },
   {
     id: "INV008",
@@ -129,6 +335,7 @@ const inventoryItems = [
     supplier: "MedTech Solutions",
     location: "Equipment Room",
     unitPrice: 35.99,
+    hsnCode: "90251100",
   },
   {
     id: "INV009",
@@ -141,6 +348,7 @@ const inventoryItems = [
     supplier: "MedSupply Co.",
     location: "Storage Room B",
     unitPrice: 7.25,
+    hsnCode: "30059099",
   },
   {
     id: "INV010",
@@ -153,6 +361,7 @@ const inventoryItems = [
     supplier: "PharmaDist Inc.",
     location: "Pharmacy Cabinet C",
     unitPrice: 9.99,
+    hsnCode: "30049099",
   },
   {
     id: "INV011",
@@ -165,6 +374,7 @@ const inventoryItems = [
     supplier: "MedTech Solutions",
     location: "Equipment Room",
     unitPrice: 75.5,
+    hsnCode: "90181900",
   },
   {
     id: "INV012",
@@ -177,6 +387,7 @@ const inventoryItems = [
     supplier: "MedSupply Co.",
     location: "Storage Room A",
     unitPrice: 12.99,
+    hsnCode: "30051000",
   },
 ]
 
@@ -324,7 +535,7 @@ export default function InventoryPage() {
             <ShoppingCart className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl xl:text-3xl mb-2 font-bold">$124,750</div>
+            <div className="text-2xl xl:text-3xl mb-2 font-bold">₹124,750</div>
             <p className="text-xs text-muted-foreground">+12.5% from last month</p>
           </CardContent>
         </Card>
@@ -363,6 +574,9 @@ export default function InventoryPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Categories</SelectItem>
+                <SelectItem value="prosthetics">Prosthetics</SelectItem>
+                <SelectItem value="orthotics">Orthotics</SelectItem>
+                <SelectItem value="surgical equipment">Surgical Equipment</SelectItem>
                 <SelectItem value="medications">Medications</SelectItem>
                 <SelectItem value="medical supplies">Medical Supplies</SelectItem>
                 <SelectItem value="equipment">Equipment</SelectItem>
@@ -388,14 +602,47 @@ export default function InventoryPage() {
         </div>
 
         <Tabs defaultValue="all" value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList>
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7">
             <TabsTrigger value="all">All Items</TabsTrigger>
+            <TabsTrigger value="prosthetics">Prosthetics</TabsTrigger>
+            <TabsTrigger value="orthotics">Orthotics</TabsTrigger>
+            <TabsTrigger value="surgical equipment">Surgical</TabsTrigger>
             <TabsTrigger value="medications">Medications</TabsTrigger>
-            <TabsTrigger value="medical supplies">Medical Supplies</TabsTrigger>
+            <TabsTrigger value="medical supplies">Medical</TabsTrigger>
             <TabsTrigger value="equipment">Equipment</TabsTrigger>
           </TabsList>
 
           <TabsContent value="all" className="mt-4">
+            <InventoryTable
+              items={filteredItems}
+              onSort={handleSort}
+              sortOrder={sortOrder}
+              onUpdateStock={handleUpdateStock}
+              onPlaceOrder={handlePlaceOrder}
+            />
+          </TabsContent>
+
+          <TabsContent value="prosthetics" className="mt-4">
+            <InventoryTable
+              items={filteredItems}
+              onSort={handleSort}
+              sortOrder={sortOrder}
+              onUpdateStock={handleUpdateStock}
+              onPlaceOrder={handlePlaceOrder}
+            />
+          </TabsContent>
+
+          <TabsContent value="orthotics" className="mt-4">
+            <InventoryTable
+              items={filteredItems}
+              onSort={handleSort}
+              sortOrder={sortOrder}
+              onUpdateStock={handleUpdateStock}
+              onPlaceOrder={handlePlaceOrder}
+            />
+          </TabsContent>
+
+          <TabsContent value="surgical equipment" className="mt-4">
             <InventoryTable
               items={filteredItems}
               onSort={handleSort}
@@ -500,6 +747,7 @@ function InventoryTable({ items, onSort, sortOrder, onUpdateStock, onPlaceOrder 
                   </div>
                 </TableHead>
                 <TableHead>Category</TableHead>
+                <TableHead>HSN Code</TableHead>
                 <TableHead>
                   <div className="flex items-center cursor-pointer" onClick={() => onSort("stockLevel")}>
                     Stock Level
@@ -526,6 +774,7 @@ function InventoryTable({ items, onSort, sortOrder, onUpdateStock, onPlaceOrder 
                   <TableCell className="font-medium">{item.id}</TableCell>
                   <TableCell>{item.name}</TableCell>
                   <TableCell>{item.category}</TableCell>
+                  <TableCell className="font-mono text-sm">{item.hsnCode}</TableCell>
                   <TableCell>
                     {item.stockLevel} / {item.minLevel}
                   </TableCell>

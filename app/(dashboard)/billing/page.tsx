@@ -13,183 +13,59 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { format } from "date-fns";
 import { Calendar, CreditCard, Download, FileText, Filter, MoreHorizontal, Plus, Receipt, Search, X } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// Sample invoices data
-const invoices = [
+// Sample data for Firebase collection setup - keep minimal for structure
+const sampleInvoices = [
   {
-    id: "DRC-INV-001",
+    id: "sample-invoice-1",
     patient: {
-      name: "John Smith",
-      image: "/colorful-abstract-shapes.png",
-      id: "P12345",
+      name: "Sample Patient",
+      image: "/user-3.png",
+      id: "sample-patient-1",
     },
-    date: "2024-04-15",
-    dueDate: "2024-05-15",
-    amount: 250.0,
-    paid: 200.0,
-    balance: 50.0,
-    status: "Partially Paid",
-    items: [
-      { description: "General Consultation", amount: 150.0 },
-      { description: "Blood Test", amount: 100.0 },
-    ],
-    insurance: {
-      provider: "Blue Cross Blue Shield",
-      claimStatus: "Approved",
-      claimAmount: 200.0,
-    },
-  },
-  {
-    id: "DRC-INV-002",
-    patient: {
-      name: "Emily Davis",
-      image: "/colorful-abstract-shapes.png",
-      id: "P23456",
-    },
-    date: "2024-04-16",
-    dueDate: "2024-05-16",
-    amount: 350.0,
+    date: "2024-01-15",
+    dueDate: "2024-02-15",
+    amount: 500.0,
     paid: 0.0,
-    balance: 350.0,
-    status: "Unpaid",
+    balance: 500.0,
+    status: "Draft",
     items: [
-      { description: "Specialist Consultation", amount: 200.0 },
-      { description: "X-Ray", amount: 150.0 },
+      { description: "Sample Consultation", amount: 500.0 },
     ],
     insurance: {
-      provider: "Aetna",
-      claimStatus: "Pending",
-      claimAmount: 280.0,
-    },
-  },
-  {
-    id: "DRC-INV-003",
-    patient: {
-      name: "Robert Wilson",
-      image: "/user-3.png",
-      id: "P34567",
-    },
-    date: "2024-04-10",
-    dueDate: "2024-05-10",
-    amount: 175.0,
-    paid: 175.0,
-    balance: 0.0,
-    status: "Paid",
-    items: [
-      { description: "Follow-up Consultation", amount: 100.0 },
-      { description: "Prescription Renewal", amount: 75.0 },
-    ],
-    insurance: {
-      provider: "UnitedHealthcare",
-      claimStatus: "Approved",
-      claimAmount: 140.0,
-    },
-  },
-  {
-    id: "DRC-INV-004",
-    patient: {
-      name: "Jessica Brown",
-      image: "/user-3.png",
-      id: "P45678",
-    },
-    date: "2024-04-05",
-    dueDate: "2024-05-05",
-    amount: 520.0,
-    paid: 520.0,
-    balance: 0.0,
-    status: "Paid",
-    items: [
-      { description: "Dental Cleaning", amount: 120.0 },
-      { description: "Dental X-Ray", amount: 150.0 },
-      { description: "Cavity Filling", amount: 250.0 },
-    ],
-    insurance: {
-      provider: "Delta Dental",
-      claimStatus: "Approved",
-      claimAmount: 416.0,
-    },
-  },
-  {
-    id: "DRC-INV-005",
-    patient: {
-      name: "Michael Johnson",
-      image: "/user-3.png",
-      id: "P56789",
-    },
-    date: "2024-04-18",
-    dueDate: "2024-05-18",
-    amount: 450.0,
-    paid: 0.0,
-    balance: 450.0,
-    status: "Unpaid",
-    items: [
-      { description: "Cardiology Consultation", amount: 250.0 },
-      { description: "ECG", amount: 200.0 },
-    ],
-    insurance: {
-      provider: "Cigna",
-      claimStatus: "Submitted",
-      claimAmount: 360.0,
-    },
-  },
-  {
-    id: "DRC-INV-006",
-    patient: {
-      name: "Sarah Thompson",
-      image: "/user-3.png",
-      id: "P67890",
-    },
-    date: "2024-04-12",
-    dueDate: "2024-05-12",
-    amount: 300.0,
-    paid: 300.0,
-    balance: 0.0,
-    status: "Paid",
-    items: [
-      { description: "Physical Therapy Session", amount: 150.0 },
-      { description: "Therapeutic Exercise", amount: 150.0 },
-    ],
-    insurance: {
-      provider: "Humana",
-      claimStatus: "Approved",
-      claimAmount: 240.0,
-    },
-  },
-  {
-    id: "DRC-INV-007",
-    patient: {
-      name: "David Miller",
-      image: "/user-3.png",
-      id: "P78901",
-    },
-    date: "2024-04-20",
-    dueDate: "2024-05-20",
-    amount: 180.0,
-    paid: 0.0,
-    balance: 180.0,
-    status: "Unpaid",
-    items: [
-      { description: "Vaccination", amount: 120.0 },
-      { description: "Wellness Check", amount: 60.0 },
-    ],
-    insurance: {
-      provider: "MedixPro",
-      claimStatus: "Not Submitted",
+      provider: "Sample Insurance",
+      claimStatus: "Draft",
       claimAmount: 0.0,
     },
   },
 ];
 
 export default function InvoicesPage() {
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [activeTab, setActiveTab] = useState("all");
   const [searchText, setSearchText] = useState("");
   const [sortOption, setSortOption] = useState("newest");
   const [statusFilter, setStatusFilter] = useState("all");
 
+  useEffect(() => {
+    const userData = localStorage.getItem('currentUser');
+    if (userData) {
+      const user = JSON.parse(userData);
+      setCurrentUser(user);
+    }
+  }, []);
+
+  // Check if user has access to quotations module
+  const hasQuotationAccess = () => {
+    if (!currentUser) return false;
+    const allowedRoles = ['frontdesk_staff', 'admin', 'superadmin'];
+    return allowedRoles.includes(currentUser.role);
+  };
+
   // Filter invoices based on active tab
   const getFilteredInvoices = () => {
-    let filtered = [...invoices];
+    let filtered = [...sampleInvoices];
 
     // Filter by tab (status)
     if (activeTab !== "all") {
@@ -255,6 +131,14 @@ export default function InvoicesPage() {
           <p className="text-muted-foreground">Manage billing and invoices for your patients.</p>
         </div>
         <div className="flex gap-3 flex-wrap">
+          {hasQuotationAccess() && (
+            <Button variant="outline" asChild>
+              <Link href="/billing/quotations">
+                <FileText className="mr-2 h-4 w-4" />
+                Quotations
+              </Link>
+            </Button>
+          )}
           <Button variant="outline" asChild>
             <Link href="/billing/payments">
               <Receipt className="mr-2 h-4 w-4" />

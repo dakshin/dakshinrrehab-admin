@@ -153,7 +153,7 @@ export default function SupplierDetailsPage({ params }: { params: Promise<{ id: 
               </div>
               <div className="rounded-lg border p-3">
                 <div className="text-sm font-medium">Total Spent</div>
-                <div className="text-2xl font-bold">$12,450</div>
+                <div className="text-2xl font-bold">₹12,450</div>
               </div>
             </div>
 
@@ -227,7 +227,7 @@ export default function SupplierDetailsPage({ params }: { params: Promise<{ id: 
                     <TableCell className="font-medium">PRD001</TableCell>
                     <TableCell>Surgical Gloves (Box of 100)</TableCell>
                     <TableCell>Disposables</TableCell>
-                    <TableCell>$12.50</TableCell>
+                    <TableCell>₹12.50</TableCell>
                     <TableCell>3-5 days</TableCell>
                     <TableCell>10 boxes</TableCell>
                   </TableRow>
@@ -235,7 +235,7 @@ export default function SupplierDetailsPage({ params }: { params: Promise<{ id: 
                     <TableCell className="font-medium">PRD002</TableCell>
                     <TableCell>Disposable Face Masks (Box of 50)</TableCell>
                     <TableCell>Disposables</TableCell>
-                    <TableCell>$8.99</TableCell>
+                    <TableCell>₹8.99</TableCell>
                     <TableCell>2-4 days</TableCell>
                     <TableCell>5 boxes</TableCell>
                   </TableRow>
@@ -243,7 +243,7 @@ export default function SupplierDetailsPage({ params }: { params: Promise<{ id: 
                     <TableCell className="font-medium">PRD003</TableCell>
                     <TableCell>Digital Thermometer</TableCell>
                     <TableCell>Equipment</TableCell>
-                    <TableCell>$24.95</TableCell>
+                    <TableCell>₹24.95</TableCell>
                     <TableCell>5-7 days</TableCell>
                     <TableCell>3 units</TableCell>
                   </TableRow>
@@ -251,7 +251,7 @@ export default function SupplierDetailsPage({ params }: { params: Promise<{ id: 
                     <TableCell className="font-medium">PRD004</TableCell>
                     <TableCell>Blood Pressure Monitor</TableCell>
                     <TableCell>Equipment</TableCell>
-                    <TableCell>$89.99</TableCell>
+                    <TableCell>₹89.99</TableCell>
                     <TableCell>7-10 days</TableCell>
                     <TableCell>2 units</TableCell>
                   </TableRow>
@@ -259,7 +259,7 @@ export default function SupplierDetailsPage({ params }: { params: Promise<{ id: 
                     <TableCell className="font-medium">PRD005</TableCell>
                     <TableCell>Stethoscope</TableCell>
                     <TableCell>Equipment</TableCell>
-                    <TableCell>$45.00</TableCell>
+                    <TableCell>₹45.00</TableCell>
                     <TableCell>3-5 days</TableCell>
                     <TableCell>1 unit</TableCell>
                   </TableRow>
@@ -437,7 +437,7 @@ export default function SupplierDetailsPage({ params }: { params: Promise<{ id: 
                     <p className="text-sm text-muted-foreground">Added by John Doe • Apr 10, 2023</p>
                   </div>
                   <p className="mt-2 text-sm">
-                    We've negotiated a 10% discount on all orders over $1,000. This is valid until the end of the year.
+                    We've negotiated a 10% discount on all orders over ₹1,000. This is valid until the end of the year.
                   </p>
                 </div>
                 <div className="rounded-md border p-2 md:p-4 flex justify-between flex-wrap gap-3">

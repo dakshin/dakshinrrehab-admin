@@ -10,7 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Briefcase, Building2, Calendar1, Clock, DollarSign, GraduationCap, Key, Mail, MapPin, Phone, Save, Shield, Upload, User, UserPlus } from "lucide-react";
+import { ArrowLeft, Briefcase, Building2, Calendar1, Clock, IndianRupee, GraduationCap, Key, Mail, MapPin, Phone, Save, Shield, Upload, User, UserPlus } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -444,7 +444,7 @@ export default function AddStaffPage() {
                     <div className="space-y-2">
                       <Label htmlFor="salary">Salary/Wage</Label>
                       <div className="relative">
-                        <DollarSign className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <IndianRupee className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                         <Input id="salary" placeholder="Enter amount" className="pl-8" />
                       </div>
                     </div>

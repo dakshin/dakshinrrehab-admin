@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, DollarSign, Filter, Plus, Search, SlidersHorizontal } from "lucide-react";
+import { CalendarDays, Clock, IndianRupee, Filter, Plus, Search, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -58,10 +58,10 @@ export default function ServicesOfferedPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Monthly Revenue</CardTitle>
-            <DollarSign className="size-8 text-muted-foreground" />
+            <IndianRupee className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$128,450</div>
+            <div className="text-2xl font-bold">₹128,450</div>
             <p className="text-xs text-green-500">+12% from last month</p>
           </CardContent>
         </Card>
@@ -143,7 +143,7 @@ export default function ServicesOfferedPage() {
                         <Badge variant="outline">Preventive</Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">30 min</TableCell>
-                      <TableCell className="hidden md:table-cell">$75</TableCell>
+                      <TableCell className="hidden md:table-cell">₹75</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -175,7 +175,7 @@ export default function ServicesOfferedPage() {
                         <Badge variant="outline">Diagnostic</Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">20 min</TableCell>
-                      <TableCell className="hidden md:table-cell">$120</TableCell>
+                      <TableCell className="hidden md:table-cell">₹120</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -207,7 +207,7 @@ export default function ServicesOfferedPage() {
                         <Badge variant="outline">Diagnostic</Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">45 min</TableCell>
-                      <TableCell className="hidden md:table-cell">$850</TableCell>
+                      <TableCell className="hidden md:table-cell">₹850</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -239,7 +239,7 @@ export default function ServicesOfferedPage() {
                         <Badge variant="outline">Treatment</Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">60 min</TableCell>
-                      <TableCell className="hidden md:table-cell">$95</TableCell>
+                      <TableCell className="hidden md:table-cell">₹95</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -271,7 +271,7 @@ export default function ServicesOfferedPage() {
                         <Badge variant="outline">Preventive</Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">15 min</TableCell>
-                      <TableCell className="hidden md:table-cell">$65</TableCell>
+                      <TableCell className="hidden md:table-cell">₹65</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -303,7 +303,7 @@ export default function ServicesOfferedPage() {
                         <Badge variant="outline">Diagnostic</Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">60 min</TableCell>
-                      <TableCell className="hidden md:table-cell">$225</TableCell>
+                      <TableCell className="hidden md:table-cell">₹225</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -335,7 +335,7 @@ export default function ServicesOfferedPage() {
                         <Badge variant="outline">Diagnostic</Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">10 min</TableCell>
-                      <TableCell className="hidden md:table-cell">$45</TableCell>
+                      <TableCell className="hidden md:table-cell">₹45</TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>

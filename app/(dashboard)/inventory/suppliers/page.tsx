@@ -157,7 +157,7 @@ export default function SuppliersPage() {
             <Truck className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$24,350</div>
+            <div className="text-2xl font-bold">₹24,350</div>
             <p className="text-xs text-muted-foreground">-8% from last month</p>
           </CardContent>
         </Card>

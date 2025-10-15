@@ -7,7 +7,7 @@ import {
   ArrowDownIcon,
   ArrowUpIcon,
   CreditCardIcon,
-  DollarSignIcon,
+  IndianRupeeIcon,
   DownloadIcon,
   FilterIcon,
   RefreshCcwIcon,
@@ -101,10 +101,10 @@ export default function FinancialReportsPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm xl:text-lg font-medium">Total Revenue</CardTitle>
-            <DollarSignIcon className="size-8 text-muted-foreground" />
+            <IndianRupeeIcon className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$128,450</div>
+            <div className="text-2xl font-bold">₹128,450</div>
             <p className="text-xs text-muted-foreground">
               <span className="text-green-500">+18.2%</span> from last month
             </p>
@@ -119,7 +119,7 @@ export default function FinancialReportsPage() {
             <WalletIcon className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$87,325</div>
+            <div className="text-2xl font-bold">₹87,325</div>
             <p className="text-xs text-muted-foreground">
               <span className="text-red-500">+5.4%</span> from last month
             </p>
@@ -134,7 +134,7 @@ export default function FinancialReportsPage() {
             <TrendingUpIcon className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$41,125</div>
+            <div className="text-2xl font-bold">₹41,125</div>
             <p className="text-xs text-muted-foreground">
               <span className="text-green-500">+12.8%</span> from last month
             </p>
@@ -149,7 +149,7 @@ export default function FinancialReportsPage() {
             <CreditCardIcon className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$23,540</div>
+            <div className="text-2xl font-bold">₹23,540</div>
             <p className="text-xs text-muted-foreground">
               <span className="text-red-500">+3.2%</span> from last month
             </p>

@@ -44,7 +44,7 @@ const initialNotifications: Notification[] = [
   {
     id: "5",
     title: "Payment received",
-    description: "Payment of $150 received from patient Sarah Davis",
+    description: "Payment of ₹150 received from patient Sarah Davis",
     time: "Yesterday",
     read: true,
     type: "billing",

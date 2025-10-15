@@ -8,41 +8,652 @@
    - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 1351ms
- ✓ Compiled /middleware in 107ms (101 modules)
+ ✓ Ready in 1577ms
+ ✓ Compiled /middleware in 106ms (101 modules)
  ○ Compiling /auth/login ...
 
 
 Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
 Setting up new context...
-Finding changed files: 10.519ms
-Reading changed files: 342.967ms
-Sorting candidates: 9.146ms
-Generate rules: 142.563ms
-Build stylesheet: 3.387ms
-Potential classes:  16997
+Finding changed files: 11.48ms
+Reading changed files: 379.998ms
+Sorting candidates: 9.608ms
+Generate rules: 157.342ms
+Build stylesheet: 3.12ms
+Potential classes:  17285
 Active contexts:  1
-JIT TOTAL: 590.379ms
+JIT TOTAL: 647.515ms
 
 
- ✓ Compiled /auth/login in 1663ms (959 modules)
+ ✓ Compiled /auth/login in 2.4s (959 modules)
 
 
 Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
-Finding changed files: 7.263ms
-Reading changed files: 0.009ms
+Finding changed files: 8.161ms
+Reading changed files: 0.008ms
 Sorting candidates: 0.002ms
-Generate rules: 0.038ms
-Build stylesheet: 0.003ms
+Generate rules: 0.031ms
+Build stylesheet: 0.001ms
 Potential classes:  1
 Active contexts:  1
-JIT TOTAL: 20.942ms
+JIT TOTAL: 22.966ms
 
 
- ✓ Compiled in 311ms (425 modules)
- GET /auth/login 200 in 1982ms
+ ✓ Compiled in 357ms (425 modules)
+ GET /auth/login 200 in 2740ms
  ○ Compiling /dashboard ...
- ✓ Compiled /dashboard in 689ms (1100 modules)
- GET /dashboard 200 in 777ms
- GET /auth/login 200 in 27ms
+ ✓ Compiled /dashboard in 1115ms (1124 modules)
+ GET /dashboard 200 in 1216ms
+ ○ Compiling /billing/quotations ...
+ ✓ Compiled /billing/quotations in 893ms (1236 modules)
+ GET /billing/quotations 200 in 987ms
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:242:1]
+ [2m239[0m |   };
+ [2m240[0m | 
+ [2m241[0m |   return (
+ [2m242[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m243[0m |       {/* Header */}
+ [2m244[0m |       <div className="flex items-center gap-4">
+ [2m245[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:242:1]
+ [2m239[0m |   };
+ [2m240[0m | 
+ [2m241[0m |   return (
+ [2m242[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m243[0m |       {/* Header */}
+ [2m244[0m |       <div className="flex items-center gap-4">
+ [2m245[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ ○ Compiling /_not-found ...
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:242:1]
+ [2m239[0m |   };
+ [2m240[0m | 
+ [2m241[0m |   return (
+ [2m242[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m243[0m |       {/* Header */}
+ [2m244[0m |       <div className="flex items-center gap-4">
+ [2m245[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ GET /billing/quotations/create 500 in 2016ms
+ GET /billing/quotations/create 500 in 10ms
+ GET /billing/quotations/create 500 in 9ms
+ GET /billing/quotations/create 500 in 9ms
+ GET /billing/quotations 500 in 13ms
+ GET /dashboard 500 in 12ms
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:242:1]
+ [2m239[0m |   };
+ [2m240[0m | 
+ [2m241[0m |   return (
+ [2m242[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m243[0m |       {/* Header */}
+ [2m244[0m |       <div className="flex items-center gap-4">
+ [2m245[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:242:1]
+ [2m239[0m |   };
+ [2m240[0m | 
+ [2m241[0m |   return (
+ [2m242[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m243[0m |       {/* Header */}
+ [2m244[0m |       <div className="flex items-center gap-4">
+ [2m245[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ GET /_next/static/webpack/39fb3e84ee6fcfe9.webpack.hot-update.json 500 in 376ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /dashboard 500 in 9ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 10.245ms
+Reading changed files: 9.228ms
+Sorting candidates: 0.373ms
+Generate rules: 1.831ms
+Build stylesheet: 0.001ms
+Potential classes:  799
+Active contexts:  1
+JIT TOTAL: 46.082ms
+
+
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:242:1]
+ [2m239[0m |   };
+ [2m240[0m | 
+ [2m241[0m |   return (
+ [2m242[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m243[0m |       {/* Header */}
+ [2m244[0m |       <div className="flex items-center gap-4">
+ [2m245[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ GET /_next/static/webpack/39fb3e84ee6fcfe9.webpack.hot-update.json 500 in 746ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /dashboard 500 in 14ms
+ GET /dashboard 500 in 13ms
+ GET /dashboard 500 in 10ms
+ GET /dashboard 500 in 9ms
+ GET /dashboard 500 in 10ms
+ GET /dashboard 500 in 10ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 10.704ms
+Reading changed files: 10.199ms
+Sorting candidates: 0.929ms
+Generate rules: 1.922ms
+Build stylesheet: 0.001ms
+Potential classes:  753
+Active contexts:  1
+JIT TOTAL: 39.425ms
+
+
+ ✓ Compiled /favicon.ico in 479ms (1582 modules)
+ GET /_next/static/webpack/39fb3e84ee6fcfe9.webpack.hot-update.json 500 in 467ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/39fb3e84ee6fcfe9.webpack.hot-update.json 404 in 134ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /_next/static/webpack/39fb3e84ee6fcfe9.webpack.hot-update.json 404 in 82ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /dashboard 200 in 224ms
+ GET /dashboard 200 in 29ms
+ GET /dashboard 200 in 26ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.213ms
+Reading changed files: 9.576ms
+Sorting candidates: 0.347ms
+Generate rules: 1.438ms
+Build stylesheet: 0.001ms
+Potential classes:  799
+Active contexts:  1
+JIT TOTAL: 36.125ms
+
+
+ ✓ Compiled in 151ms (806 modules)
+ GET /dashboard 200 in 66ms
+ GET /dashboard 200 in 13ms
  GET /dashboard 200 in 11ms
+ GET /billing/quotations 200 in 16ms
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:242:1]
+ [2m239[0m |   }
+ [2m240[0m | 
+ [2m241[0m |   return (
+ [2m242[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m243[0m |       {/* Header */}
+ [2m244[0m |       <div className="flex items-center gap-4">
+ [2m245[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ GET /billing/quotations/create 500 in 153ms
+ GET /billing/quotations/create 500 in 11ms
+ ○ Compiling /billing/quotations/create ...
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 20.242ms
+Reading changed files: 10.489ms
+Sorting candidates: 0.312ms
+Generate rules: 1.519ms
+Build stylesheet: 0.001ms
+Potential classes:  772
+Active contexts:  1
+JIT TOTAL: 51.686ms
+
+
+ ✓ Compiled /billing/quotations/create in 701ms (1566 modules)
+ GET /_next/static/webpack/39fb3e84ee6fcfe9.webpack.hot-update.json 500 in 686ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./app/(dashboard)/billing/quotations/create/page.tsx
+Error:   [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/gandhimac/Sites/dakshinrrehab-admin/app/(dashboard)/billing/quotations/create/page.tsx[0m:238:1]
+ [2m235[0m |   }
+ [2m236[0m | 
+ [2m237[0m |   return (
+ [2m238[0m |     <div className="flex flex-col gap-5">
+     : [35;1m     ^^^[0m
+ [2m239[0m |       {/* Header */}
+ [2m240[0m |       <div className="flex items-center gap-4">
+ [2m241[0m |         <Button variant="outline" size="icon" asChild>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/(dashboard)/billing/quotations/create/page.tsx
+ GET /billing/quotations/create 500 in 152ms
+ ○ Compiling /billing/quotations/create ...
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.5ms
+Reading changed files: 0.003ms
+Sorting candidates: 0.002ms
+Generate rules: 0.047ms
+Build stylesheet: 0.001ms
+Potential classes:  1
+Active contexts:  1
+JIT TOTAL: 26.11ms
+
+
+ ✓ Compiled /_not-found in 907ms (1681 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/39fb3e84ee6fcfe9.webpack.hot-update.json 404 in 1010ms
+ GET /billing/quotations/create 404 in 13ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 8.417ms
+Reading changed files: 9.53ms
+Sorting candidates: 0.161ms
+Generate rules: 0.781ms
+Build stylesheet: 0.001ms
+Potential classes:  322
+Active contexts:  1
+JIT TOTAL: 35.077ms
+
+
+ ○ Compiling /billing/quotations/create ...
+ ✓ Compiled /billing/quotations/create in 1464ms (1680 modules)
+ GET /billing/quotations/create 200 in 1285ms
+ GET /billing/quotations/create 200 in 16ms
+ GET /billing/quotations 200 in 42ms
+ GET /billing/quotations/sample-quotation-1 404 in 11ms
+ GET /billing/quotations/sample-quotation-1 404 in 45ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 12.461ms
+Reading changed files: 15.929ms
+Sorting candidates: 0.171ms
+Generate rules: 1.49ms
+Build stylesheet: 0.001ms
+Potential classes:  347
+Active contexts:  1
+JIT TOTAL: 55.703ms
+
+
+ ○ Compiling /billing/quotations/[id] ...
+ ✓ Compiled /billing/quotations/[id] in 1462ms (1692 modules)
+ GET /billing/quotations/sample-quotation-1 200 in 1565ms
+ GET /billing/quotations/sample-quotation-1 200 in 18ms
+ ○ Compiling /billing ...
+ ✓ Compiled /billing in 939ms (1602 modules)
+ GET /billing 200 in 1028ms
+ GET /billing 200 in 111ms
+ GET /auth/login 200 in 62ms
+ GET /auth/login 200 in 24ms
+ GET /dashboard 200 in 20ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.755ms
+Reading changed files: 0.002ms
+Sorting candidates: 0.003ms
+Generate rules: 0.051ms
+Build stylesheet: 0.001ms
+Potential classes:  1
+Active contexts:  1
+JIT TOTAL: 31.83ms
+
+
+ ✓ Compiled in 865ms (1657 modules)
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 8.216ms
+Reading changed files: 4.272ms
+Sorting candidates: 0.072ms
+Generate rules: 0.297ms
+Build stylesheet: 0.001ms
+Potential classes:  74
+Active contexts:  1
+JIT TOTAL: 26.6ms
+
+
+ ✓ Compiled in 120ms (815 modules)
+ ✓ Compiled in 269ms (1643 modules)
+ GET /dashboard 200 in 136ms
+ ○ Compiling /rooms/new ...
+ ✓ Compiled /rooms/new in 1761ms (2386 modules)
+ GET /rooms/new 200 in 1893ms
+ GET /dashboard 200 in 22ms
+ ○ Compiling /inventory ...
+ ✓ Compiled /inventory in 702ms (2422 modules)
+ GET /inventory 200 in 793ms
+ ✓ Compiled /inventory/add in 502ms (2446 modules)
+ GET /inventory/add 200 in 640ms
+ GET /inventory 200 in 15ms
+ GET /inventory/add 200 in 30ms
+ ○ Compiling /inventory/alerts ...
+ ✓ Compiled /inventory/alerts in 565ms (2434 modules)
+ GET /inventory/alerts 200 in 659ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.239ms
+Reading changed files: 7.917ms
+Sorting candidates: 0.354ms
+Generate rules: 1.737ms
+Build stylesheet: 0.001ms
+Potential classes:  700
+Active contexts:  1
+JIT TOTAL: 39.782ms
+
+
+ ✓ Compiled in 916ms (1976 modules)
+ ✓ Compiled /inventory in 235ms (1182 modules)
+ GET /inventory 200 in 356ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.863ms
+Reading changed files: 13.24ms
+Sorting candidates: 0.362ms
+Generate rules: 2.666ms
+Build stylesheet: 0.002ms
+Potential classes:  703
+Active contexts:  1
+JIT TOTAL: 49.406ms
+
+
+ ✓ Compiled in 608ms (2417 modules)
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 8.552ms
+Reading changed files: 11.222ms
+Sorting candidates: 0.392ms
+Generate rules: 1.661ms
+Build stylesheet: 0.001ms
+Potential classes:  705
+Active contexts:  1
+JIT TOTAL: 36.652ms
+
+
+ ✓ Compiled in 496ms (2417 modules)
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.014ms
+Reading changed files: 10.22ms
+Sorting candidates: 0.301ms
+Generate rules: 1.379ms
+Build stylesheet: 0.001ms
+Potential classes:  705
+Active contexts:  1
+JIT TOTAL: 35.248ms
+
+
+ ✓ Compiled in 358ms (1976 modules)
+ ✓ Compiled /inventory in 198ms (1182 modules)
+ GET /inventory 200 in 432ms
+ ✓ Compiled /favicon.ico in 305ms (1198 modules)
+ GET /favicon.ico 200 in 598ms
+ GET /favicon.ico 200 in 207ms
+ GET /auth/login 200 in 184ms
+ GET /dashboard 200 in 22ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 8.53ms
+Reading changed files: 32.838ms
+Sorting candidates: 0.394ms
+Generate rules: 1.716ms
+Build stylesheet: 0.001ms
+Potential classes:  708
+Active contexts:  1
+JIT TOTAL: 63.406ms
+
+
+ ✓ Compiled in 926ms (2417 modules)
+ GET /dashboard 200 in 137ms
+ GET /inventory 200 in 140ms
+ ○ Compiling /billing/quotations ...
+ ✓ Compiled /billing/quotations in 566ms (1189 modules)
+ GET /billing/quotations 200 in 684ms
+ GET /inventory 200 in 30ms
+ ○ Compiling /inventory/[id] ...
+ ✓ Compiled /inventory/[id] in 974ms (2425 modules)
+ GET /inventory/INV001 200 in 1536ms
+ GET /inventory 200 in 21ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.95ms
+Reading changed files: 11.902ms
+Sorting candidates: 0.34ms
+Generate rules: 1.508ms
+Build stylesheet: 0.001ms
+Potential classes:  709
+Active contexts:  1
+JIT TOTAL: 43.026ms
+
+
+ ✓ Compiled in 501ms (2432 modules)
+ GET /inventory 200 in 129ms
+ GET /inventory 200 in 131ms
+ GET /inventory 200 in 156ms
+ ✓ Compiled /favicon.ico in 427ms (1206 modules)
+ GET /favicon.ico 200 in 712ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 10.833ms
+Reading changed files: 10.974ms
+Sorting candidates: 0.293ms
+Generate rules: 1.468ms
+Build stylesheet: 0.001ms
+Potential classes:  715
+Active contexts:  1
+JIT TOTAL: 37.819ms
+
+
+ ✓ Compiled in 412ms (2448 modules)
+ GET /inventory 200 in 101ms
+ GET /inventory 200 in 20ms
+ GET /favicon.ico 200 in 224ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 10.063ms
+Reading changed files: 10.362ms
+Sorting candidates: 0.321ms
+Generate rules: 1.524ms
+Build stylesheet: 0.001ms
+Potential classes:  720
+Active contexts:  1
+JIT TOTAL: 40.599ms
+
+
+ ✓ Compiled in 462ms (2448 modules)
+ GET /inventory 200 in 95ms
+ GET /inventory 200 in 19ms
+ GET /favicon.ico 200 in 215ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 8.148ms
+Reading changed files: 8.736ms
+Sorting candidates: 0.364ms
+Generate rules: 1.495ms
+Build stylesheet: 0.001ms
+Potential classes:  724
+Active contexts:  1
+JIT TOTAL: 32.141ms
+
+
+ ✓ Compiled in 361ms (2448 modules)
+ GET /inventory 200 in 80ms
+ GET /inventory 200 in 31ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 6.884ms
+Reading changed files: 9.03ms
+Sorting candidates: 0.335ms
+Generate rules: 1.473ms
+Build stylesheet: 0.001ms
+Potential classes:  726
+Active contexts:  1
+JIT TOTAL: 30.539ms
+
+
+ ✓ Compiled in 390ms (2448 modules)
+ GET /inventory 200 in 81ms
+ GET /inventory 200 in 19ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 6.919ms
+Reading changed files: 8.348ms
+Sorting candidates: 0.223ms
+Generate rules: 1.332ms
+Build stylesheet: 0.001ms
+Potential classes:  728
+Active contexts:  1
+JIT TOTAL: 29.696ms
+
+
+ ✓ Compiled in 424ms (2448 modules)
+ GET /inventory 200 in 67ms
+ GET /inventory 200 in 24ms
+ GET /inventory 200 in 161ms
+ GET /favicon.ico 200 in 212ms
+ GET /favicon.ico 200 in 208ms
+ GET /inventory 200 in 37ms
+ GET /favicon.ico 200 in 210ms
+ GET /favicon.ico 200 in 206ms
+ ○ Compiling /inventory/alerts ...
+ ✓ Compiled /inventory/alerts in 602ms (1214 modules)
+ GET /inventory/alerts 200 in 682ms
+ ○ Compiling /inventory/suppliers ...
+ ✓ Compiled /inventory/suppliers in 1106ms (2453 modules)
+ GET /inventory/suppliers 200 in 1181ms
+ ○ Compiling /rooms/alloted ...
+ ✓ Compiled /rooms/alloted in 662ms (2454 modules)
+ GET /rooms/alloted 200 in 734ms
+ ✓ Compiled /rooms/new in 489ms (1231 modules)
+ GET /rooms/new 200 in 570ms
+ ✓ Compiled /_not-found in 345ms (1232 modules)
+ GET /rooms/discharge 404 in 409ms
+ GET /rooms/discharge 404 in 84ms
+ GET /rooms/new 200 in 159ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 12.315ms
+Reading changed files: 0.003ms
+Sorting candidates: 0.002ms
+Generate rules: 0.05ms
+Build stylesheet: 0.001ms
+Potential classes:  1
+Active contexts:  1
+JIT TOTAL: 33.153ms
+
+
+ ✓ Compiled in 237ms (1260 modules)
+ GET /rooms/new 200 in 52ms
+ GET /inventory 200 in 53ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 10.026ms
+Reading changed files: 7.632ms
+Sorting candidates: 0.23ms
+Generate rules: 1.265ms
+Build stylesheet: 0.001ms
+Potential classes:  428
+Active contexts:  1
+JIT TOTAL: 35.179ms
+
+
+ ✓ Compiled in 1214ms (2538 modules)
+ GET /rooms/new 200 in 977ms
+ GET /inventory 200 in 978ms
+ GET /rooms/new 200 in 36ms
+ GET /inventory 200 in 32ms
+
+
+Source path: /Users/gandhimac/Sites/dakshinrrehab-admin/app/globals.css
+Finding changed files: 9.983ms
+Reading changed files: 3.783ms
+Sorting candidates: 0.123ms
+Generate rules: 0.612ms
+Build stylesheet: 0.001ms
+Potential classes:  85
+Active contexts:  1
+JIT TOTAL: 29.323ms
+
+
+ ✓ Compiled in 189ms (1260 modules)
+ GET /rooms/new 200 in 50ms
+ GET /inventory 200 in 51ms
+ ○ Compiling /rooms/discharge ...
+ ✓ Compiled /rooms/discharge in 903ms (2453 modules)
+ GET /rooms/discharge 200 in 1034ms
+ GET /rooms/discharge 200 in 36ms
+ ○ Compiling /feedback ...
+ ✓ Compiled /feedback in 1409ms (3513 modules)
+ GET /feedback 200 in 1515ms

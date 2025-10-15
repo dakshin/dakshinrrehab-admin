@@ -53,11 +53,11 @@ export default function ReportsPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Total Revenue</span>
-                <span className="font-medium">$128,450</span>
+                <span className="font-medium">₹128,450</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Net Profit</span>
-                <span className="font-medium">$41,125</span>
+                <span className="font-medium">₹41,125</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Growth</span>
@@ -119,7 +119,7 @@ export default function ReportsPage() {
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Inventory Value</span>
-                <span className="font-medium">$248,320</span>
+                <span className="font-medium">₹248,320</span>
               </div>
             </div>
             <Button asChild>

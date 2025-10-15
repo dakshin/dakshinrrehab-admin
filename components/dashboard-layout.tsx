@@ -1,5 +1,5 @@
 "use client";
-import { Sidebar } from "@/components/sidebar";
+import { RoleBasedSidebar } from "@/components/role-based-sidebar";
 import { UserNav } from "@/components/user-nav";
 import { useMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -47,7 +47,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       </header>
       <div className="flex flex-1 items-start">
         <div ref={sidebarRef}>
-          <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+          <RoleBasedSidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         </div>
         <main className={cn("flex-1 overflow-auto duration-300 p-4 xl:p-6 xl:ml-64", !isSidebarOpen && "xl:ml-0")}>{children}</main>
       </div>

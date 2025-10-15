@@ -214,7 +214,7 @@ export default function DepartmentDetailsPage({ params }: { params: Promise<{ id
                           {["30-60 min", "45-90 min", "60-120 min", "15-30 min", "As needed"][i]}
                         </p>
                       </div>
-                      <Badge variant="outline">{["$150", "$250", "$350", "$100", "Varies"][i]}</Badge>
+                      <Badge variant="outline">{["₹150", "₹250", "₹350", "₹100", "Varies"][i]}</Badge>
                     </div>
                   ))}
 

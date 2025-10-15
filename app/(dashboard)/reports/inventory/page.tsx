@@ -213,7 +213,7 @@ export default function InventoryReportPage() {
             <TruckIcon className="size-8 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$248,320</div>
+            <div className="text-2xl font-bold">₹248,320</div>
             <p className="text-xs text-muted-foreground">
               <span className="text-green-500">+4.3%</span> from previous period
             </p>
@@ -608,7 +608,7 @@ export default function InventoryReportPage() {
                     <TableCell>385</TableCell>
                     <TableCell>32</TableCell>
                     <TableCell>11</TableCell>
-                    <TableCell>$124,850</TableCell>
+                    <TableCell>₹124,850</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">Medical Supplies</TableCell>
@@ -616,7 +616,7 @@ export default function InventoryReportPage() {
                     <TableCell>312</TableCell>
                     <TableCell>28</TableCell>
                     <TableCell>16</TableCell>
-                    <TableCell>$68,420</TableCell>
+                    <TableCell>₹68,420</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">Equipment</TableCell>
@@ -624,7 +624,7 @@ export default function InventoryReportPage() {
                     <TableCell>118</TableCell>
                     <TableCell>4</TableCell>
                     <TableCell>2</TableCell>
-                    <TableCell>$42,680</TableCell>
+                    <TableCell>₹42,680</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">Office Supplies</TableCell>
@@ -632,7 +632,7 @@ export default function InventoryReportPage() {
                     <TableCell>198</TableCell>
                     <TableCell>12</TableCell>
                     <TableCell>5</TableCell>
-                    <TableCell>$12,370</TableCell>
+                    <TableCell>₹12,370</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-medium">Laboratory</TableCell>
@@ -640,7 +640,7 @@ export default function InventoryReportPage() {
                     <TableCell>108</TableCell>
                     <TableCell>10</TableCell>
                     <TableCell>4</TableCell>
-                    <TableCell>$36,480</TableCell>
+                    <TableCell>₹36,480</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -810,7 +810,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Emergency</TableCell>
                     <TableCell>1,245</TableCell>
-                    <TableCell>$28,450</TableCell>
+                    <TableCell>₹28,450</TableCell>
                     <TableCell>24.8%</TableCell>
                     <TableCell className="text-green-500">
                       <div className="flex items-center">
@@ -823,7 +823,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Surgery</TableCell>
                     <TableCell>986</TableCell>
-                    <TableCell>$32,680</TableCell>
+                    <TableCell>₹32,680</TableCell>
                     <TableCell>28.5%</TableCell>
                     <TableCell className="text-green-500">
                       <div className="flex items-center">
@@ -836,7 +836,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Pediatrics</TableCell>
                     <TableCell>645</TableCell>
-                    <TableCell>$12,340</TableCell>
+                    <TableCell>₹12,340</TableCell>
                     <TableCell>10.8%</TableCell>
                     <TableCell className="text-red-500">
                       <div className="flex items-center">
@@ -849,7 +849,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Cardiology</TableCell>
                     <TableCell>528</TableCell>
-                    <TableCell>$18,920</TableCell>
+                    <TableCell>₹18,920</TableCell>
                     <TableCell>16.5%</TableCell>
                     <TableCell className="text-green-500">
                       <div className="flex items-center">
@@ -862,7 +862,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Radiology</TableCell>
                     <TableCell>412</TableCell>
-                    <TableCell>$14,680</TableCell>
+                    <TableCell>₹14,680</TableCell>
                     <TableCell>12.8%</TableCell>
                     <TableCell className="text-red-500">
                       <div className="flex items-center">
@@ -1042,7 +1042,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Medline Industries</TableCell>
                     <TableCell>324</TableCell>
-                    <TableCell>$68,450</TableCell>
+                    <TableCell>₹68,450</TableCell>
                     <TableCell>98.2%</TableCell>
                     <TableCell>2.4 days</TableCell>
                     <TableCell>4.8/5</TableCell>
@@ -1050,7 +1050,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">McKesson</TableCell>
                     <TableCell>286</TableCell>
-                    <TableCell>$54,320</TableCell>
+                    <TableCell>₹54,320</TableCell>
                     <TableCell>96.8%</TableCell>
                     <TableCell>3.1 days</TableCell>
                     <TableCell>4.6/5</TableCell>
@@ -1058,7 +1058,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Cardinal Health</TableCell>
                     <TableCell>245</TableCell>
-                    <TableCell>$48,680</TableCell>
+                    <TableCell>₹48,680</TableCell>
                     <TableCell>97.5%</TableCell>
                     <TableCell>2.8 days</TableCell>
                     <TableCell>4.7/5</TableCell>
@@ -1066,7 +1066,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Henry Schein</TableCell>
                     <TableCell>198</TableCell>
-                    <TableCell>$36,920</TableCell>
+                    <TableCell>₹36,920</TableCell>
                     <TableCell>95.4%</TableCell>
                     <TableCell>3.5 days</TableCell>
                     <TableCell>4.5/5</TableCell>
@@ -1074,7 +1074,7 @@ export default function InventoryReportPage() {
                   <TableRow>
                     <TableCell className="font-medium">Owens & Minor</TableCell>
                     <TableCell>192</TableCell>
-                    <TableCell>$32,480</TableCell>
+                    <TableCell>₹32,480</TableCell>
                     <TableCell>94.8%</TableCell>
                     <TableCell>3.8 days</TableCell>
                     <TableCell>4.4/5</TableCell>

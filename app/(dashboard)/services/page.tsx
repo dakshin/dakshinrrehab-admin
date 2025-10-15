@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Activity, Clock, DollarSign, Edit, FileText, Filter, MoreHorizontal, Plus, Search, Stethoscope, Tag } from "lucide-react";
+import { Activity, Clock, IndianRupee, Edit, FileText, Filter, MoreHorizontal, Plus, Search, Stethoscope, Tag } from "lucide-react";
 import Link from "next/link";
 
 export default function ServicesPage() {
@@ -60,10 +60,10 @@ export default function ServicesPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Monthly Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <IndianRupee className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$128,450</div>
+            <div className="text-2xl font-bold">₹128,450</div>
             <p className="text-xs text-muted-foreground">+12% from last month</p>
           </CardContent>
         </Card>
@@ -267,7 +267,7 @@ function ServiceCard({ service }: { service: any }) {
             {service.duration}
           </Badge>
           <Badge variant="secondary" className="text-xs">
-            <DollarSign className="mr-1 h-3 w-3" />
+            <IndianRupee className="mr-1 h-3 w-3" />
             {service.price}
           </Badge>
           <Badge variant="outline" className="text-xs">
@@ -290,7 +290,7 @@ const departmentServices = [
         name: "Electrocardiogram (ECG)",
         description: "Recording of the electrical activity of the heart",
         duration: "30 min",
-        price: "$120",
+        price: "₹120",
         type: "Diagnostic",
       },
       {
@@ -298,7 +298,7 @@ const departmentServices = [
         name: "Echocardiogram",
         description: "Ultrasound of the heart to assess structure and function",
         duration: "45 min",
-        price: "$250",
+        price: "₹250",
         type: "Diagnostic",
       },
       {
@@ -306,7 +306,7 @@ const departmentServices = [
         name: "Cardiac Stress Test",
         description: "Measures heart function during physical activity",
         duration: "60 min",
-        price: "$350",
+        price: "₹350",
         type: "Diagnostic",
       },
       {
@@ -314,7 +314,7 @@ const departmentServices = [
         name: "Cardiac Consultation",
         description: "Comprehensive heart health assessment",
         duration: "45 min",
-        price: "$180",
+        price: "₹180",
         type: "Preventive",
       },
     ],
@@ -328,7 +328,7 @@ const departmentServices = [
         name: "Electroencephalogram (EEG)",
         description: "Recording of electrical activity in the brain",
         duration: "60 min",
-        price: "$280",
+        price: "₹280",
         type: "Diagnostic",
       },
       {
@@ -336,7 +336,7 @@ const departmentServices = [
         name: "Neurological Examination",
         description: "Comprehensive assessment of neurological function",
         duration: "45 min",
-        price: "$200",
+        price: "₹200",
         type: "Diagnostic",
       },
       {
@@ -344,7 +344,7 @@ const departmentServices = [
         name: "Migraine Treatment",
         description: "Specialized treatment for chronic migraines",
         duration: "30 min",
-        price: "$150",
+        price: "₹150",
         type: "Treatment",
       },
     ],
@@ -358,7 +358,7 @@ const departmentServices = [
         name: "Well-Child Visit",
         description: "Routine check-up for children's health and development",
         duration: "30 min",
-        price: "$100",
+        price: "₹100",
         type: "Preventive",
       },
       {
@@ -366,7 +366,7 @@ const departmentServices = [
         name: "Childhood Immunizations",
         description: "Standard vaccinations for children",
         duration: "15 min",
-        price: "$80",
+        price: "₹80",
         type: "Preventive",
       },
       {
@@ -374,7 +374,7 @@ const departmentServices = [
         name: "Pediatric Allergy Testing",
         description: "Identification of allergies in children",
         duration: "45 min",
-        price: "$180",
+        price: "₹180",
         type: "Diagnostic",
       },
       {
@@ -382,7 +382,7 @@ const departmentServices = [
         name: "Pediatric Asthma Treatment",
         description: "Management and treatment of childhood asthma",
         duration: "30 min",
-        price: "$120",
+        price: "₹120",
         type: "Treatment",
       },
     ],
@@ -396,7 +396,7 @@ const departmentServices = [
         name: "Joint Injection",
         description: "Injection of medication into joints to reduce pain and inflammation",
         duration: "30 min",
-        price: "$150",
+        price: "₹150",
         type: "Treatment",
       },
       {
@@ -404,7 +404,7 @@ const departmentServices = [
         name: "Fracture Care",
         description: "Treatment and management of bone fractures",
         duration: "45 min",
-        price: "$220",
+        price: "₹220",
         type: "Treatment",
       },
       {
@@ -412,7 +412,7 @@ const departmentServices = [
         name: "Orthopedic Consultation",
         description: "Evaluation of musculoskeletal conditions",
         duration: "30 min",
-        price: "$160",
+        price: "₹160",
         type: "Diagnostic",
       },
     ],
@@ -426,7 +426,7 @@ const departmentServices = [
         name: "Skin Cancer Screening",
         description: "Examination for early detection of skin cancer",
         duration: "30 min",
-        price: "$120",
+        price: "₹120",
         type: "Preventive",
       },
       {
@@ -434,7 +434,7 @@ const departmentServices = [
         name: "Acne Treatment",
         description: "Specialized treatment for acne and related conditions",
         duration: "30 min",
-        price: "$140",
+        price: "₹140",
         type: "Treatment",
       },
       {
@@ -442,7 +442,7 @@ const departmentServices = [
         name: "Mole Removal",
         description: "Removal of suspicious or cosmetically undesirable moles",
         duration: "45 min",
-        price: "$200",
+        price: "₹200",
         type: "Treatment",
       },
     ],

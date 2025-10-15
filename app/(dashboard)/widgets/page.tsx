@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowDown, ArrowUp, Bell, Calendar, Check, CheckCircle, ChevronRight, Clock, DollarSign, Download, FileText, Heart, Info, Mail, MapPin, MessageSquare, Phone, Star, ThumbsUp, User, Users, X, Pill, Bed, Package } from "lucide-react";
+import { ArrowDown, ArrowUp, Bell, Calendar, Check, CheckCircle, ChevronRight, Clock, IndianRupee, Download, FileText, Heart, Info, Mail, MapPin, MessageSquare, Phone, Star, ThumbsUp, User, Users, X, Pill, Bed, Package } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -140,11 +140,11 @@ export default function WidgetsPage() {
                   <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-sm font-medium text-purple-600">Revenue</CardTitle>
                     <div className="p-2 rounded-full bg-purple-100">
-                      <DollarSign className="size-7 text-purple-600" />
+                      <IndianRupee className="size-7 text-purple-600" />
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-3xl text-purple-600 font-bold ">$24,563</div>
+                    <div className="text-3xl text-purple-600 font-bold ">₹24,563</div>
                     <p className="text-xs text-purple-500 mt-1">+10.5% from last week</p>
                   </CardContent>
                 </Card>
@@ -1350,10 +1350,10 @@ export default function WidgetsPage() {
               <Card className="bg-green-500/10 border-green-500/30">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium text-green-700">Revenue</CardTitle>
-                  <DollarSign className="size-8 text-green-500" />
+                  <IndianRupee className="size-8 text-green-500" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-700">$24,563</div>
+                  <div className="text-2xl font-bold text-green-700">₹24,563</div>
                   <p className="text-xs text-green-600">+10.5% from last week</p>
                 </CardContent>
               </Card>

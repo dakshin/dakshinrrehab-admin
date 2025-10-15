@@ -14,112 +14,21 @@ import { ArrowLeft, CreditCard, Download, FileText, MoreHorizontal, Receipt, Sea
 import Link from "next/link";
 import { useState } from "react";
 
-// Sample payments data
-const payments = [
+// Sample payment data for Firebase collection structure
+const samplePayments = [
   {
-    id: "PMT-001",
+    id: "sample-payment-1",
     patient: {
-      name: "John Smith",
-      image: "/colorful-abstract-shapes.png",
-      id: "P12345",
-    },
-    invoice: "INV-001",
-    date: "2024-04-22",
-    amount: 200.0,
-    method: "Credit Card",
-    status: "Completed",
-    cardType: "Visa",
-    cardLast4: "4242",
-    transactionId: "txn_1234567890",
-  },
-  {
-    id: "PMT-002",
-    patient: {
-      name: "Robert Wilson",
+      name: "Sample Patient",
       image: "/user-3.png",
-      id: "P34567",
+      id: "sample-patient-1",
     },
-    invoice: "INV-003",
-    date: "2024-04-20",
-    amount: 175.0,
-    method: "Debit Card",
+    invoice: "sample-invoice-1",
+    date: "2024-01-22",
+    amount: 500.0,
+    method: "UPI",
     status: "Completed",
-    cardType: "Mastercard",
-    cardLast4: "5678",
-    transactionId: "txn_2345678901",
-  },
-  {
-    id: "PMT-003",
-    patient: {
-      name: "Jessica Brown",
-      image: "/user-3.png",
-      id: "P45678",
-    },
-    invoice: "INV-004",
-    date: "2024-04-18",
-    amount: 520.0,
-    method: "Bank Transfer",
-    status: "Completed",
-    transactionId: "txn_3456789012",
-  },
-  {
-    id: "PMT-004",
-    patient: {
-      name: "Sarah Thompson",
-      image: "/user-3.png",
-      id: "P67890",
-    },
-    invoice: "INV-006",
-    date: "2024-04-15",
-    amount: 300.0,
-    method: "Cash",
-    status: "Completed",
-    receiptNumber: "RCP-12345",
-  },
-  {
-    id: "PMT-005",
-    patient: {
-      name: "John Smith",
-      image: "/colorful-abstract-shapes.png",
-      id: "P12345",
-    },
-    invoice: "INV-001",
-    date: "2024-04-10",
-    amount: 50.0,
-    method: "Insurance",
-    status: "Processing",
-    claimNumber: "CLM-98765",
-  },
-  {
-    id: "PMT-006",
-    patient: {
-      name: "Emily Davis",
-      image: "/colorful-abstract-shapes.png",
-      id: "P23456",
-    },
-    invoice: "INV-002",
-    date: "2024-04-25",
-    amount: 350.0,
-    method: "Credit Card",
-    status: "Failed",
-    cardType: "Visa",
-    cardLast4: "1234",
-    transactionId: "txn_4567890123",
-    failureReason: "Insufficient funds",
-  },
-  {
-    id: "PMT-007",
-    patient: {
-      name: "Michael Johnson",
-      image: "/user-3.png",
-      id: "P56789",
-    },
-    invoice: "INV-005",
-    date: "2024-04-28",
-    amount: 450.0,
-    method: "Check",
-    status: "Pending",
-    checkNumber: "CHK-56789",
+    transactionId: "sample_txn_123",
   },
 ];
 
@@ -131,7 +40,7 @@ export default function PaymentsHistoryPage() {
   const [paymentMethod, setPaymentMethod] = useState("all");
 
   // Filter payments based on search query
-  const filteredPayments = payments.filter((payment) => {
+  const filteredPayments = samplePayments.filter((payment) => {
     // Filter by search query
     const searchFilter = searchQuery === "" || payment.id.toLowerCase().includes(searchQuery.toLowerCase()) || payment.patient.name.toLowerCase().includes(searchQuery.toLowerCase()) || payment.patient.id.toLowerCase().includes(searchQuery.toLowerCase()) || payment.invoice.toLowerCase().includes(searchQuery.toLowerCase());
 

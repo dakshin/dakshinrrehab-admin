@@ -251,7 +251,7 @@ export default function PatientEditPage({ params }: { params: Promise<{ id: stri
 
                   <div className="space-y-2">
                     <Label htmlFor="insurance-notes">Additional Notes</Label>
-                    <Textarea id="insurance-notes" defaultValue="Co-pay: $25 for primary care, $40 for specialists" />
+                    <Textarea id="insurance-notes" defaultValue="Co-pay: ₹25 for primary care, ₹40 for specialists" />
                   </div>
 
                   <Separator />

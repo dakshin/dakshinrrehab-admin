@@ -17,134 +17,25 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
-// Sample insurance claims data
-export const claims = [
+// Sample insurance claim data for Firebase collection structure
+export const sampleClaims = [
   {
-    id: "CLM-001",
+    id: "sample-claim-1",
     patient: {
-      name: "John Smith",
-      image: "/colorful-abstract-shapes.png",
-      id: "P12345",
-    },
-    invoice: "INV-001",
-    provider: "Blue Cross Blue Shield",
-    policyNumber: "BCBS123456789",
-    submittedDate: "2024-04-15",
-    amount: 200.0,
-    status: "Approved",
-    approvedAmount: 180.0,
-    paymentDate: "2024-04-22",
-    claimType: "Medical",
-    notes: "Claim approved with standard copay deduction",
-  },
-  {
-    id: "CLM-002",
-    patient: {
-      name: "Emily Davis",
-      image: "/colorful-abstract-shapes.png",
-      id: "P23456",
-    },
-    invoice: "INV-002",
-    provider: "Aetna",
-    policyNumber: "AET987654321",
-    submittedDate: "2024-04-16",
-    amount: 280.0,
-    status: "Pending",
-    approvedAmount: 0.0,
-    paymentDate: "",
-    claimType: "Medical",
-    notes: "Claim under review by insurance provider",
-  },
-  {
-    id: "CLM-003",
-    patient: {
-      name: "Robert Wilson",
+      name: "Sample Patient",
       image: "/user-3.png",
-      id: "P34567",
+      id: "sample-patient-1",
     },
-    invoice: "INV-003",
-    provider: "UnitedHealthcare",
-    policyNumber: "UHC567891234",
-    submittedDate: "2024-04-10",
-    amount: 140.0,
-    status: "Approved",
-    approvedAmount: 140.0,
-    paymentDate: "2024-04-20",
-    claimType: "Medical",
-    notes: "Claim approved in full",
-  },
-  {
-    id: "CLM-004",
-    patient: {
-      name: "Jessica Brown",
-      image: "/user-3.png",
-      id: "P45678",
-    },
-    invoice: "INV-004",
-    provider: "Delta Dental",
-    policyNumber: "DD456789123",
-    submittedDate: "2024-04-05",
-    amount: 416.0,
-    status: "Approved",
-    approvedAmount: 350.0,
-    paymentDate: "2024-04-18",
-    claimType: "Dental",
-    notes: "Partial approval - some procedures not covered under policy",
-  },
-  {
-    id: "CLM-005",
-    patient: {
-      name: "Michael Johnson",
-      image: "/user-3.png",
-      id: "P56789",
-    },
-    invoice: "INV-005",
-    provider: "Cigna",
-    policyNumber: "CIG123789456",
-    submittedDate: "2024-04-18",
-    amount: 360.0,
-    status: "Submitted",
-    approvedAmount: 0.0,
-    paymentDate: "",
-    claimType: "Medical",
-    notes: "Claim submitted electronically, awaiting acknowledgment",
-  },
-  {
-    id: "CLM-006",
-    patient: {
-      name: "Sarah Thompson",
-      image: "/user-3.png",
-      id: "P67890",
-    },
-    invoice: "INV-006",
-    provider: "Humana",
-    policyNumber: "HUM789123456",
-    submittedDate: "2024-04-12",
-    amount: 240.0,
-    status: "Rejected",
-    approvedAmount: 0.0,
-    paymentDate: "",
-    claimType: "Medical",
-    rejectionReason: "Service not covered under current policy",
-    notes: "Claim rejected - patient notified",
-  },
-  {
-    id: "CLM-007",
-    patient: {
-      name: "David Miller",
-      image: "/user-3.png",
-      id: "P78901",
-    },
-    invoice: "INV-007",
-    provider: "MedixPro",
-    policyNumber: "MED123456789",
-    submittedDate: "",
-    amount: 180.0,
+    invoice: "sample-invoice-1",
+    provider: "Sample Insurance Provider",
+    policyNumber: "SMP123456789",
+    submittedDate: "2024-01-15",
+    amount: 500.0,
     status: "Draft",
     approvedAmount: 0.0,
     paymentDate: "",
     claimType: "Medical",
-    notes: "Claim prepared but not yet submitted",
+    notes: "Sample claim for Firebase setup",
   },
 ];
 
@@ -166,7 +57,7 @@ export default function InsuranceClaimsPage() {
   });
 
   // Filter claims based on search query and filters
-  const filteredClaims = claims.filter((claim) => {
+  const filteredClaims = sampleClaims.filter((claim) => {
     // Search filter
     const searchLower = searchQuery.toLowerCase();
     const matchesSearch =
@@ -738,15 +629,15 @@ export default function InsuranceClaimsPage() {
                   </div>
                   <div className="flex justify-between">
                     <p>Claim Amount:</p>
-                    <p className="font-medium">$200.00</p>
+                    <p className="font-medium">₹200.00</p>
                   </div>
                   <div className="flex justify-between">
                     <p>Approved Amount:</p>
-                    <p className="font-medium">$180.00</p>
+                    <p className="font-medium">₹180.00</p>
                   </div>
                   <div className="flex justify-between">
                     <p>Patient Responsibility:</p>
-                    <p className="font-medium">$20.00</p>
+                    <p className="font-medium">₹20.00</p>
                   </div>
                   <div className="flex justify-between">
                     <p>Payment Date:</p>
@@ -772,16 +663,16 @@ export default function InsuranceClaimsPage() {
                   <TableRow>
                     <TableCell>General Consultation</TableCell>
                     <TableCell>2024-04-15</TableCell>
-                    <TableCell className="text-right">$150.00</TableCell>
-                    <TableCell className="text-right">$135.00</TableCell>
-                    <TableCell className="text-right">$15.00</TableCell>
+                    <TableCell className="text-right">₹150.00</TableCell>
+                    <TableCell className="text-right">₹135.00</TableCell>
+                    <TableCell className="text-right">₹15.00</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Blood Test - Basic Panel</TableCell>
                     <TableCell>2024-04-15</TableCell>
-                    <TableCell className="text-right">$50.00</TableCell>
-                    <TableCell className="text-right">$45.00</TableCell>
-                    <TableCell className="text-right">$5.00</TableCell>
+                    <TableCell className="text-right">₹50.00</TableCell>
+                    <TableCell className="text-right">₹45.00</TableCell>
+                    <TableCell className="text-right">₹5.00</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Activity, Clock, DollarSign, Stethoscope } from "lucide-react"
+import { Activity, Clock, IndianRupee, Stethoscope } from "lucide-react"
 
 export default function ServicesLoading() {
   return (
@@ -47,7 +47,7 @@ export default function ServicesLoading() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Monthly Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <IndianRupee className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <Skeleton className="h-8 w-24" />

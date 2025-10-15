@@ -840,7 +840,7 @@ export default function PatientDetailsPage() {
                         <CardTitle className="text-base">Total Billed</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-2xl font-bold">$1,130.00</p>
+                        <p className="text-2xl font-bold">₹1,130.00</p>
                         <p className="text-sm text-muted-foreground">Year to date</p>
                       </CardContent>
                     </Card>
@@ -850,7 +850,7 @@ export default function PatientDetailsPage() {
                         <CardTitle className="text-base">Insurance Covered</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-2xl font-bold">$904.00</p>
+                        <p className="text-2xl font-bold">₹904.00</p>
                         <p className="text-sm text-muted-foreground">80% coverage</p>
                       </CardContent>
                     </Card>
@@ -860,9 +860,9 @@ export default function PatientDetailsPage() {
                         <CardTitle className="text-base">Patient Paid</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-2xl font-bold">$152.00</p>
+                        <p className="text-2xl font-bold">₹152.00</p>
                         <p className="text-sm text-muted-foreground">
-                          <span className="text-red-500">$74.00 outstanding</span>
+                          <span className="text-red-500">₹74.00 outstanding</span>
                         </p>
                       </CardContent>
                     </Card>

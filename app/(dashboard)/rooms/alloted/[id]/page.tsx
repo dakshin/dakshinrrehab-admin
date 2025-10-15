@@ -332,21 +332,21 @@ export default function RoomAllotmentDetailsPage({ params }: { params: Promise<{
                     </TableRow>
                     <TableRow>
                       <TableCell>Nursing Care</TableCell>
-                      <TableCell>$150/day</TableCell>
+                      <TableCell>₹150/day</TableCell>
                       <TableCell>5</TableCell>
-                      <TableCell className="text-right">$750.00</TableCell>
+                      <TableCell className="text-right">₹750.00</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Medications</TableCell>
                       <TableCell>-</TableCell>
                       <TableCell>-</TableCell>
-                      <TableCell className="text-right">$320.00</TableCell>
+                      <TableCell className="text-right">₹320.00</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Laboratory Tests</TableCell>
                       <TableCell>-</TableCell>
                       <TableCell>-</TableCell>
-                      <TableCell className="text-right">$450.00</TableCell>
+                      <TableCell className="text-right">₹450.00</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell colSpan={3} className="font-medium text-right">

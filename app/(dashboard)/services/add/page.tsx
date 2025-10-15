@@ -184,7 +184,7 @@ export default function AddServicePage() {
                     <FormItem>
                       <FormLabel>Price</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g. $150" {...field} />
+                        <Input placeholder="e.g. ₹150" {...field} />
                       </FormControl>
                       <FormDescription>Standard price for this service</FormDescription>
                       <FormMessage />

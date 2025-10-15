@@ -16,7 +16,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Clock,
-  DollarSign,
+  IndianRupee,
   Download,
   Filter,
   UserRound,
@@ -63,7 +63,7 @@ const unread = [
     time: "2 hours ago",
   },
   {
-    icon: <DollarSign className="h-4 w-4 text-purple-500" />,
+    icon: <IndianRupee className="h-4 w-4 text-purple-500" />,
     title: "Payment Received",
     message: "₹1,500 received for a spine decompression package session.",
     time: "3 hours ago",
@@ -90,7 +90,7 @@ const today = [
     time: "6 hours ago",
   },
   {
-    icon: <DollarSign className="h-4 w-4 text-green-500" />,
+    icon: <IndianRupee className="h-4 w-4 text-green-500" />,
     title: "Invoice Paid",
     message: "₹2,300 received for gait analysis and posture correction session.",
     time: "8 hours ago",
@@ -223,7 +223,7 @@ export default function DashboardPage() {
       <div className="grid gap-4 xl:gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <Card className="border bg-white dark:bg-background shadow-sm hover:shadow-md transition">
           <CardHeader className="flex flex-col items-start gap-1">
-            <DollarSign className="h-6 w-6 text-green-600" />
+            <IndianRupee className="h-6 w-6 text-green-600" />
             <CardTitle className="text-base font-semibold text-foreground">Total Clinic Revenue</CardTitle>
             <p className="text-muted-foreground text-sm">
               <span className="text-green-600">+15%</span> from last month
@@ -510,7 +510,7 @@ export default function DashboardPage() {
                   ].map((report, i) => (
                     <li key={i} className="flex items-center justify-between py-1 flex-wrap gap-2">
                       <div className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4 text-muted-foreground" />
+                        <IndianRupee className="h-4 w-4 text-muted-foreground" />
                         <span className="text-sm">{report.name}</span>
                       </div>
                       <div className="flex items-center gap-2">

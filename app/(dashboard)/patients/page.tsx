@@ -18,6 +18,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Download, Filter, MoreHorizontal, Plus, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useIsolatedData } from "@/components/with-data-isolation";
+import { SAMPLE_PATIENTS } from "@/lib/doctor-data-filter";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Shield } from "lucide-react";
 
 // Sample patient data
 const patientsData = [
@@ -164,6 +168,10 @@ type FilterState = {
 };
 
 export default function PatientsPage() {
+  const { getFilteredPatients } = useIsolatedData();
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [isolatedPatients, setIsolatedPatients] = useState<any[]>([]);
+
   // State for filters
   const [filters, setFilters] = useState<FilterState>({
     search: "",
@@ -175,24 +183,41 @@ export default function PatientsPage() {
   });
 
   // State for filtered patients
-  const [filteredPatients, setFilteredPatients] = useState(patientsData);
+  const [filteredPatients, setFilteredPatients] = useState<any[]>([]);
 
   // State for active filter count
   const [activeFilterCount, setActiveFilterCount] = useState(0);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
-  // Extract unique conditions and doctors for filter options
-  const uniqueConditions = Array.from(new Set(patientsData.map((patient) => patient.condition)));
-  const uniqueDoctors = Array.from(new Set(patientsData.map((patient) => patient.doctor)));
+  // Get user data and apply data isolation
+  useEffect(() => {
+    const userData = localStorage.getItem('currentUser');
+    if (userData) {
+      const user = JSON.parse(userData);
+      setCurrentUser(user);
+      
+      // Get filtered patients based on user role
+      const isolated = getFilteredPatients();
+      setIsolatedPatients(isolated);
+    }
+  }, [getFilteredPatients]);
+
+  // Extract unique conditions and doctors for filter options from isolated data
+  const uniqueConditions = Array.from(new Set(isolatedPatients.map((patient) => patient.name))); // Using names as conditions for demo
+  const uniqueDoctors = Array.from(new Set(['Dr. Swapna Gandhi'])); // Clinic doctors
 
   // Apply filters when filters state changes
   useEffect(() => {
-    let result = patientsData;
+    let result = isolatedPatients;
 
     // Apply search filter
     if (filters.search) {
       const searchLower = filters.search.toLowerCase();
-      result = result.filter((patient) => patient.name.toLowerCase().includes(searchLower) || patient.email.toLowerCase().includes(searchLower) || patient.condition.toLowerCase().includes(searchLower) || patient.doctor.toLowerCase().includes(searchLower) || patient.phone.includes(filters.search));
+      result = result.filter((patient) => 
+        patient.name.toLowerCase().includes(searchLower) || 
+        (patient.email && patient.email.toLowerCase().includes(searchLower)) ||
+        (patient.phone && patient.phone.includes(filters.search))
+      );
     }
 
     // Apply status filter
@@ -230,7 +255,7 @@ export default function PatientsPage() {
     if (filters.doctors.length > 0) count++;
 
     setActiveFilterCount(count);
-  }, [filters]);
+  }, [filters, isolatedPatients]);
 
   // Handle search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -286,10 +311,30 @@ export default function PatientsPage() {
   return (
     <>
       <div className="flex flex-col gap-5">
+        {/* Privacy Notice for Doctors */}
+        {currentUser?.role === 'doctor' && (
+          <Alert className="border-blue-200 bg-blue-50">
+            <Shield className="h-4 w-4" />
+            <AlertDescription className="text-blue-800">
+              <strong>🔒 Privacy Protected:</strong> You can only see your assigned patients. 
+              Currently showing <strong>{isolatedPatients.length}</strong> of your patients.
+              {isolatedPatients.length > 0 && (
+                <span className="block mt-1">Your patients: {isolatedPatients.map(p => p.name).join(', ')}</span>
+              )}
+            </AlertDescription>
+          </Alert>
+        )}
+        
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl lg:text-3xl font-bold tracking-tight mb-2">Patients</h1>
-            <p className="text-muted-foreground">Manage your patients and their medical records.</p>
+            <h1 className="text-2xl lg:text-3xl font-bold tracking-tight mb-2">
+              {currentUser?.role === 'doctor' ? 'My Patients' : 'Patients'}
+            </h1>
+            <p className="text-muted-foreground">
+              {currentUser?.role === 'doctor' 
+                ? 'Manage your assigned patients and their medical records.' 
+                : 'Manage patients and their medical records.'}
+            </p>
           </div>
           <Button asChild>
             <Link href="/patients/add">
@@ -492,7 +537,7 @@ export default function PatientsPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Name</TableHead>
-                    <TableHead className="table-cell">Age/Gender</TableHead>
+                    <TableHead className="table-cell">Contact</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead className="table-cell">Last Visit</TableHead>
                     <TableHead className="table-cell">Condition</TableHead>
@@ -506,28 +551,30 @@ export default function PatientsPage() {
                       <TableCell>
                         <div className="flex items-center gap-3">
                           <Avatar>
-                            <AvatarImage src={patient.image || "/user-2.png"} alt={patient.name} />
+                            <AvatarImage src="/user-2.png" alt={patient.name} />
                             <AvatarFallback>{patient.name.charAt(0)}</AvatarFallback>
                           </Avatar>
                           <div>
                             <p className="font-medium">{patient.name}</p>
                             <p className="text-sm text-muted-foreground md:hidden">
-                              {patient.age} • {patient.gender}
+                              {patient.email || 'No email'}
                             </p>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell className="table-cell">
-                        {patient.age} • {patient.gender}
+                        {patient.phone || 'No phone'}
                       </TableCell>
                       <TableCell>
-                        <Badge variant={patient.status === "Active" ? "default" : "secondary"} className={patient.status === "Active" ? "bg-green-500 text-gray-700" : "bg-yellow-500 text-neutral-700"}>
-                          {patient.status}
+                        <Badge variant="default" className="bg-green-500 text-white">
+                          Active
                         </Badge>
                       </TableCell>
-                      <TableCell className="table-cell">{patient.lastVisit}</TableCell>
-                      <TableCell className="table-cell">{patient.condition}</TableCell>
-                      <TableCell className="table-cell">{patient.doctor}</TableCell>
+                      <TableCell className="table-cell">Recent</TableCell>
+                      <TableCell className="table-cell">General Care</TableCell>
+                      <TableCell className="table-cell">
+                        {currentUser?.role === 'doctor' ? currentUser.name : 'Dr. Swapna Gandhi'}
+                      </TableCell>
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>

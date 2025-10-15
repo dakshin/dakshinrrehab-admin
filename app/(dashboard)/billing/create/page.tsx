@@ -18,56 +18,22 @@ import { ArrowLeft, Calculator, FileText, Plus, Search, Trash } from "lucide-rea
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-// Sample patients data
-const patients = [
+// Sample patient for Firebase setup
+const samplePatients = [
   {
-    id: "P12345",
-    name: "John Smith",
-    image: "/colorful-abstract-shapes.png",
-    dob: "1978-05-15",
-    age: 45,
-    gender: "Male",
-    email: "john.smith@example.com",
-    phone: "+1 (555) 123-4567",
-    address: "123 Main Street, Apt 4B, New York, NY 10001",
-    insurance: {
-      provider: "Blue Cross Blue Shield",
-      policyNumber: "BCBS123456789",
-      groupNumber: "GRP987654321",
-      coverageType: "PPO",
-    },
-  },
-  {
-    id: "P23456",
-    name: "Emily Davis",
-    image: "/colorful-abstract-shapes.png",
-    dob: "1990-08-22",
-    age: 33,
-    gender: "Female",
-    email: "emily.davis@example.com",
-    phone: "+1 (555) 234-5678",
-    address: "456 Oak Avenue, San Francisco, CA 94102",
-    insurance: {
-      provider: "Aetna",
-      policyNumber: "AET987654321",
-      groupNumber: "GRP123456789",
-      coverageType: "HMO",
-    },
-  },
-  {
-    id: "P34567",
-    name: "Robert Wilson",
+    id: "sample-patient-1",
+    name: "Sample Patient",
     image: "/user-3.png",
-    dob: "1965-03-10",
-    age: 58,
+    dob: "1990-01-01",
+    age: 34,
     gender: "Male",
-    email: "robert.wilson@example.com",
-    phone: "+1 (555) 345-6789",
-    address: "789 Pine Street, Chicago, IL 60601",
+    email: "patient@example.com",
+    phone: "+91 98765 43210",
+    address: "Hyderabad, Telangana",
     insurance: {
-      provider: "UnitedHealthcare",
-      policyNumber: "UHC567891234",
-      groupNumber: "GRP456789123",
+      provider: "Sample Insurance",
+      policyNumber: "SMP123456789",
+      groupNumber: "GRP123456789",
       coverageType: "PPO",
     },
   },

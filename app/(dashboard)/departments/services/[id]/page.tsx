@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, Clock, DollarSign, Edit, FileText, LineChart, MessageSquare, Pencil, Plus, Printer, Share2, Star, Users } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, IndianRupee, Edit, FileText, LineChart, MessageSquare, Pencil, Plus, Printer, Share2, Star, Users } from "lucide-react";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -130,7 +130,7 @@ export default function ServiceDetailsPage({ params }: { params: Promise<{ id: s
               <div className="space-y-2">
                 <div className="text-sm font-medium text-muted-foreground">Price</div>
                 <div className="flex items-center">
-                  <DollarSign className="mr-2 h-4 w-4 text-muted-foreground" />${service.price}
+                  <IndianRupee className="mr-2 h-4 w-4 text-muted-foreground" />${service.price}
                 </div>
               </div>
             </div>
@@ -369,7 +369,7 @@ export default function ServiceDetailsPage({ params }: { params: Promise<{ id: s
               </CardHeader>
               <CardContent>
                 <div className="flex items-center">
-                  <DollarSign className="mr-2 h-4 w-4 text-muted-foreground" />
+                  <IndianRupee className="mr-2 h-4 w-4 text-muted-foreground" />
                   <span>${relatedService.price}</span>
                 </div>
               </CardContent>
