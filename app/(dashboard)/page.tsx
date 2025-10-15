@@ -9,166 +9,206 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, Ban, Calendar, CheckCircle2, ChevronRight, Clock, DollarSign, Download, Filter, UserRound, Users } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  AlertCircle,
+  Ban,
+  Calendar,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  DollarSign,
+  Download,
+  Filter,
+  UserRound,
+  Users,
+} from "lucide-react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+
+// ---------- Notifications ----------
 const unread = [
   {
     icon: <AlertCircle className="h-4 w-4 text-red-500" />,
-    title: "Urgent: Low medication stock",
-    message: "Amoxicillin stock is critically low. Please reorder.",
+    title: "Equipment Maintenance Alert",
+    message: "Shockwave Therapy unit requires preventive maintenance check.",
     time: "10 minutes ago",
   },
   {
     icon: <Calendar className="h-4 w-4 text-blue-500" />,
-    title: "New appointment request",
-    message: "Patient James Wilson requested an appointment for tomorrow.",
+    title: "New Session Booking",
+    message: "A patient booked a physiotherapy session for knee rehab tomorrow.",
     time: "30 minutes ago",
   },
   {
     icon: <UserRound className="h-4 w-4 text-green-500" />,
-    title: "New patient registration",
-    message: "Emily Parker has registered as a new patient.",
+    title: "New Case Registered",
+    message: "Front Office (Miss Lavanya) added a new patient under Neuro Rehab.",
     time: "1 hour ago",
   },
   {
     icon: <Clock className="h-4 w-4 text-orange-500" />,
-    title: "Staff schedule update",
-    message: "Dr. Rodriguez has requested time off next week.",
+    title: "Therapist Schedule Update",
+    message: "Dr. Swapna Gandhi adjusted the afternoon Pilates session slots.",
     time: "2 hours ago",
   },
   {
     icon: <DollarSign className="h-4 w-4 text-purple-500" />,
-    title: "Payment received",
-    message: "Insurance payment of $1,250 received for patient #12345.",
+    title: "Payment Received",
+    message: "₹1,500 received for a spine decompression package session.",
     time: "3 hours ago",
   },
 ];
+
 const today = [
   {
     icon: <CheckCircle2 className="h-4 w-4 text-green-500" />,
-    title: "Appointment confirmed",
-    message: "Dr. Chen confirmed appointment with patient #23456.",
+    title: "Session Confirmed",
+    message: "Physiotherapy session confirmed for patient under Dr. Swapna Gandhi.",
     time: "4 hours ago",
   },
   {
     icon: <Users className="h-4 w-4 text-blue-500" />,
-    title: "Staff meeting reminder",
-    message: "Weekly staff meeting today at 3:00 PM in Conference Room A.",
+    title: "Team Huddle Reminder",
+    message: "Morning team briefing with front office and therapists at 9:15 AM.",
     time: "5 hours ago",
   },
   {
     icon: <Calendar className="h-4 w-4 text-purple-500" />,
-    title: "Schedule change",
-    message: "Your 2:00 PM appointment has been rescheduled to 3:30 PM.",
+    title: "Schedule Change",
+    message: "Prosthetic fitting session rescheduled to 4:30 PM.",
     time: "6 hours ago",
   },
   {
     icon: <DollarSign className="h-4 w-4 text-green-500" />,
-    title: "Invoice paid",
-    message: "Patient Maria Garcia has paid invoice #INV-2023-0456.",
+    title: "Invoice Paid",
+    message: "₹2,300 received for gait analysis and posture correction session.",
     time: "8 hours ago",
   },
 ];
+
 const earlier = [
   {
     icon: <Ban className="h-4 w-4 text-red-500" />,
-    title: "Appointment cancelled",
-    message: "Patient Thomas Brown cancelled his appointment for yesterday.",
+    title: "Session Cancelled",
+    message: "One wellness appointment cancelled by patient (rebooked next week).",
     time: "Yesterday",
   },
   {
     icon: <AlertCircle className="h-4 w-4 text-orange-500" />,
-    title: "System maintenance",
-    message: "Scheduled system maintenance completed successfully.",
+    title: "System Maintenance",
+    message: "DakshinRehab Dashboard successfully updated to latest release.",
     time: "Yesterday",
   },
   {
     icon: <CheckCircle2 className="h-4 w-4 text-green-500" />,
-    title: "Lab results ready",
-    message: "Lab results for patient #34567 are now available.",
+    title: "Report Ready",
+    message: "Weekly therapy outcome reports generated for physiotherapy department.",
     time: "2 days ago",
   },
   {
     icon: <Users className="h-4 w-4 text-blue-500" />,
-    title: "New staff onboarding",
-    message: "Please welcome Dr. Lisa Wong to the Pediatrics department.",
+    title: "New Team Member",
+    message: "Please welcome Tanisha Mohanty (BPT) – Physiotherapist – to DakshinRehab.",
     time: "3 days ago",
   },
 ];
+
+// ---------- Settings ----------
 const categories = [
   {
-    category: "Appointments",
-    description: "New, cancelled, and rescheduled appointments",
+    category: "Session Alerts",
+    description: "New, cancelled, and rescheduled therapy sessions",
     enabled: true,
   },
   {
     category: "Patient Updates",
-    description: "New registrations and patient status changes",
+    description: "New case registrations and discharge updates",
     enabled: true,
   },
   {
-    category: "Staff Alerts",
-    description: "Schedule changes and staff announcements",
+    category: "Team Announcements",
+    description: "Staff schedules and clinic news",
     enabled: true,
   },
-  { category: "Inventory Alerts", description: "Low stock and reorder notifications", enabled: true },
+  {
+    category: "Equipment Notices",
+    description: "Maintenance and device usage notifications",
+    enabled: true,
+  },
 ];
+
 const deliveryMethods = [
   {
     method: "In-app Notifications",
-    description: "Receive notifications within the dashboard",
+    description: "Receive updates inside the DakshinRehab dashboard",
     enabled: true,
   },
-  { method: "Email Notifications", description: "Receive notifications via email", enabled: true },
+  {
+    method: "Email Notifications",
+    description: "Get daily summaries via email",
+    enabled: true,
+  },
   {
     method: "SMS Notifications",
-    description: "Receive notifications via text message",
+    description: "Receive text reminders for sessions",
     enabled: false,
   },
   {
     method: "Push Notifications",
-    description: "Receive notifications on your mobile device",
+    description: "Instant alerts on your mobile device",
     enabled: false,
   },
 ];
+
+// ---------- Charts ----------
 const COLORS = ["#2563eb", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"];
-// Patient demographics data
+
 const demographicsData = [
-  { ageGroup: "0-17", male: 120, female: 140 },
-  { ageGroup: "18-24", male: 150, female: 170 },
-  { ageGroup: "25-34", male: 210, female: 280 },
-  { ageGroup: "35-44", male: 190, female: 230 },
-  { ageGroup: "45-54", male: 160, female: 180 },
-  { ageGroup: "55-64", male: 140, female: 150 },
-  { ageGroup: "65+", male: 110, female: 130 },
+  { ageGroup: "0-17", male: 30, female: 25 },
+  { ageGroup: "18-30", male: 60, female: 70 },
+  { ageGroup: "31-45", male: 55, female: 65 },
+  { ageGroup: "46-60", male: 40, female: 45 },
+  { ageGroup: "60+", male: 20, female: 30 },
 ];
 
-// Appointment types data
 const appointmentTypesData = [
-  { name: "Check-up", value: 35 },
-  { name: "Consultation", value: 25 },
-  { name: "Follow-up", value: 20 },
-  { name: "Procedure", value: 10 },
-  { name: "Emergency", value: 5 },
-  { name: "Other", value: 5 },
+  { name: "Physiotherapy", value: 45 },
+  { name: "Prosthetics & Orthotics", value: 20 },
+  { name: "Neuro Rehab", value: 15 },
+  { name: "Pediatric Rehab", value: 10 },
+  { name: "Wellness", value: 10 },
 ];
 
-// Revenue by department data
 const revenueDepartmentsData = [
-  { name: "Cardiology", revenue: 12500 },
-  { name: "Orthopedics", revenue: 10800 },
-  { name: "Pediatrics", revenue: 8500 },
-  { name: "Neurology", revenue: 7200 },
-  { name: "Dermatology", revenue: 6300 },
-  { name: "Oncology", revenue: 5900 },
+  { name: "Physiotherapy", revenue: 652000 },
+  { name: "Prosthetics & Orthotics", revenue: 498000 },
+  { name: "Wellness", revenue: 285000 },
+  { name: "Pediatric", revenue: 172000 },
+  { name: "Vascular", revenue: 98000 },
 ];
+
 export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-5 overflow-x-hidden">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl lg:text-3xl font-bold tracking-tight mb-2">Dashboard</h2>
-          <p className="text-muted-foreground">Welcome back, Dr. Johnson! Here's what's happening today.</p>
+          <h2 className="text-2xl lg:text-3xl font-bold tracking-tight mb-2">
+            DakshinRehab Dashboard
+          </h2>
+          <p className="text-muted-foreground">
+            Welcome back! Empowering recovery every day through compassionate rehabilitation.
+          </p>
         </div>
         <div className="flex items-center flex-wrap gap-2">
           <CalendarDateRangePicker />
@@ -179,64 +219,62 @@ export default function DashboardPage() {
         </div>
       </div>
 
+      {/* KPI Cards */}
       <div className="grid gap-4 xl:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Card 1: Total Revenue */}
         <Card className="border bg-white dark:bg-background shadow-sm hover:shadow-md transition">
           <CardHeader className="flex flex-col items-start gap-1">
             <DollarSign className="h-6 w-6 text-green-600" />
-            <CardTitle className="text-base font-semibold text-foreground">Total Revenue</CardTitle>
+            <CardTitle className="text-base font-semibold text-foreground">Total Clinic Revenue</CardTitle>
             <p className="text-muted-foreground text-sm">
-              <span className="text-green-600">+20.1%</span> from last month
+              <span className="text-green-600">+15%</span> from last month
             </p>
           </CardHeader>
           <CardContent className="flex flex-col gap-2 mt-2 !pt-0">
-            <h3 className="text-4xl font-bold">$45,231.89</h3>
+            <h3 className="text-4xl font-bold">₹ 12,45,800</h3>
           </CardContent>
         </Card>
 
-        {/* Card 2: Appointments */}
         <Card className="border bg-white dark:bg-background shadow-sm hover:shadow-md transition">
           <CardHeader className="flex flex-col items-start gap-1">
             <Calendar className="h-6 w-6 text-blue-500" />
-            <CardTitle className="text-base font-semibold text-foreground">Appointments</CardTitle>
+            <CardTitle className="text-base font-semibold text-foreground">Rehab Sessions</CardTitle>
             <p className="text-muted-foreground text-sm">
-              <span className="text-blue-600">+10.1%</span> from last month
+              <span className="text-blue-600">+8%</span> from last month
             </p>
           </CardHeader>
           <CardContent className="flex flex-col gap-2 mt-2 !pt-0">
-            <h3 className="text-4xl font-bold">+2,350</h3>
+            <h3 className="text-4xl font-bold">+1,245</h3>
           </CardContent>
         </Card>
 
-        {/* Card 3: Patients */}
         <Card className="border bg-white dark:bg-background shadow-sm hover:shadow-md transition">
           <CardHeader className="flex flex-col items-start gap-1">
             <UserRound className="h-6 w-6 text-amber-500" />
-            <CardTitle className="text-base font-semibold text-foreground">Patients</CardTitle>
+            <CardTitle className="text-base font-semibold text-foreground">Active Rehab Cases</CardTitle>
             <p className="text-muted-foreground text-sm">
-              <span className="text-amber-600">+19%</span> from last month
+              <span className="text-amber-600">+12%</span> this week
             </p>
           </CardHeader>
           <CardContent className="flex flex-col gap-2 mt-2 !pt-0">
-            <h3 className="text-4xl font-bold">+12,234</h3>
+            <h3 className="text-4xl font-bold">+385</h3>
           </CardContent>
         </Card>
 
-        {/* Card 4: Staff */}
         <Card className="border bg-white dark:bg-background shadow-sm hover:shadow-md transition">
           <CardHeader className="flex flex-col items-start gap-1">
             <Users className="h-6 w-6 text-purple-500" />
-            <CardTitle className="text-base font-semibold text-foreground">Staff</CardTitle>
+            <CardTitle className="text-base font-semibold text-foreground">Team Members</CardTitle>
             <p className="text-muted-foreground text-sm">
-              <span className="text-purple-600">+4</span> new this month
+              <span className="text-purple-600">+2</span> joined this month
             </p>
           </CardHeader>
           <CardContent className="flex flex-col gap-2 mt-2 !pt-0">
-            <h3 className="text-4xl font-bold">+573</h3>
+            <h3 className="text-4xl font-bold">+27</h3>
           </CardContent>
         </Card>
       </div>
 
+      {/* Tabs */}
       <Tabs defaultValue="overview" className="space-y-4">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -245,13 +283,13 @@ export default function DashboardPage() {
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
         </TabsList>
 
-        {/* Overview Tab */}
+        {/* Overview */}
         <TabsContent value="overview" className="space-y-4">
           <div className="max-md:space-y-4 md:grid md:gap-4 md:grid-cols-2 lg:grid-cols-7">
             <Card className="lg:col-span-4">
               <CardHeader>
                 <CardTitle>Overview</CardTitle>
-                <CardDescription>Patient visits and revenue for the current period.</CardDescription>
+                <CardDescription>Rehab sessions and revenue for current period</CardDescription>
               </CardHeader>
               <CardContent>
                 <Overview />
@@ -259,8 +297,8 @@ export default function DashboardPage() {
             </Card>
             <Card className="lg:col-span-3">
               <CardHeader>
-                <CardTitle>Recent Appointments</CardTitle>
-                <CardDescription>You have {12} appointments today.</CardDescription>
+                <CardTitle>Recent Sessions</CardTitle>
+                <CardDescription>You have {12} sessions today.</CardDescription>
               </CardHeader>
               <CardContent>
                 <RecentAppointments />
@@ -269,12 +307,12 @@ export default function DashboardPage() {
           </div>
         </TabsContent>
 
-        {/* Analytics Tab */}
+        {/* Analytics */}
         <TabsContent value="analytics" className="space-y-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <div>
-              <h2 className="text-xl font-semibold">Detailed Analytics</h2>
-              <p className="text-sm text-muted-foreground">Insights and trends from your clinic data</p>
+              <h2 className="text-xl font-semibold">DakshinRehab Analytics</h2>
+              <p className="text-sm text-muted-foreground">Insights and performance across rehabilitation departments</p>
             </div>
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm">
@@ -292,7 +330,7 @@ export default function DashboardPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Patient Demographics</CardTitle>
-                <CardDescription>Age and gender distribution</CardDescription>
+                <CardDescription>Age and gender distribution of active cases</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[200px]">
@@ -301,11 +339,7 @@ export default function DashboardPage() {
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="ageGroup" />
                       <YAxis />
-                      <Tooltip
-                        formatter={(value, name) => {
-                          return [value, name === "male" ? "Male" : "Female"];
-                        }}
-                      />
+                      <Tooltip />
                       <Legend />
                       <Bar dataKey="male" fill="#2563eb" name="Male" />
                       <Bar dataKey="female" fill="#ec4899" name="Female" />
@@ -317,20 +351,28 @@ export default function DashboardPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Appointment Types</CardTitle>
-                <CardDescription>Distribution by service category</CardDescription>
+                <CardTitle>Treatment Categories</CardTitle>
+                <CardDescription>Distribution by department</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[200px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
-                      <Pie data={appointmentTypesData} cx="50%" cy="50%" labelLine={false} outerRadius={80} fill="#8884d8" dataKey="value" nameKey="name" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
+                      <Pie
+                        data={appointmentTypesData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={80}
+                        dataKey="value"
+                        nameKey="name"
+                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      >
                         {appointmentTypesData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value, name) => [value, name]} />
-                      {/* <Legend /> */}
+                      <Tooltip />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -339,8 +381,8 @@ export default function DashboardPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Revenue Sources</CardTitle>
-                <CardDescription>Breakdown by department</CardDescription>
+                <CardTitle>Revenue by Department</CardTitle>
+                <CardDescription>Monthly service-wise revenue split (₹)</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-[200px]">
@@ -349,7 +391,7 @@ export default function DashboardPage() {
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis type="number" />
                       <YAxis dataKey="name" type="category" width={100} />
-                      <Tooltip formatter={(value) => [`$${value}`, "Revenue"]} />
+                      <Tooltip formatter={(value) => [`₹${value}`, "Revenue"]} />
                       <Bar dataKey="revenue" fill="#10b981" radius={[0, 4, 4, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
@@ -401,15 +443,16 @@ export default function DashboardPage() {
             <Card className="col-span-1">
               <CardHeader>
                 <CardTitle>Staff Performance</CardTitle>
-                <CardDescription>Top performing staff members</CardDescription>
+                <CardDescription>Top performing team members</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {[
-                    { name: "Dr. Sarah Chen", role: "Cardiologist", patients: 42, rating: 4.9 },
-                    { name: "Dr. Michael Rodriguez", role: "Pediatrician", patients: 38, rating: 4.8 },
-                    { name: "Dr. Emily Johnson", role: "Neurologist", patients: 35, rating: 4.7 },
-                    { name: "Nurse Robert Kim", role: "Head Nurse", patients: 56, rating: 4.9 },
+                    { name: "Dr. Swapna Gandhi", role: "Physical Therapist", patients: 42, rating: 4.9 },
+                    { name: "Mohan Gandhi", role: "Founder, Prosthetist & Orthotist", patients: 28, rating: 4.8 },
+                    { name: "Dr. Bhavin Ram", role: "Vascular Surgeon", patients: 18, rating: 4.7 },
+                    { name: "Dr. Sujith Omkaram", role: "Pediatric Orthopaedician", patients: 22, rating: 4.8 },
+                    { name: "Miss Lavanya", role: "Front Office Coordinator", patients: 65, rating: 4.9 },
                   ].map((staff, i) => (
                     <div key={i} className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -417,7 +460,7 @@ export default function DashboardPage() {
                           <AvatarFallback>
                             {staff.name
                               .split(" ")
-                              .map((n, i, arr) => (i === 1 ? n[0] : ""))
+                              .map((n, idx) => (idx === 1 ? n[0] : ""))
                               .join("")}
                           </AvatarFallback>
                         </Avatar>
@@ -438,12 +481,12 @@ export default function DashboardPage() {
           </div>
         </TabsContent>
 
-        {/* Reports Tab */}
+        {/* Reports */}
         <TabsContent value="reports" className="space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div>
-              <h2 className="text-xl font-semibold mb-2">Available Reports</h2>
-              <p className="text-sm text-muted-foreground">Access and generate detailed reports</p>
+              <h2 className="text-xl font-semibold mb-2">Clinic Reports</h2>
+              <p className="text-sm text-muted-foreground">Access therapy, patient, and billing reports</p>
             </div>
             <Button>
               <Download className="mr-2 h-4 w-4" />
@@ -455,14 +498,14 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle>Financial Reports</CardTitle>
-                <CardDescription>Revenue, expenses, and billing</CardDescription>
+                <CardDescription>Revenue, packages, and billing</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    { name: "Monthly Revenue Summary", updated: "Today" },
-                    { name: "Quarterly Financial Analysis", updated: "Last week" },
-                    { name: "Insurance Claims Report", updated: "2 days ago" },
+                    { name: "Monthly Revenue Summary (₹)", updated: "Today" },
+                    { name: "Quarterly Service-wise Analysis", updated: "Last week" },
+                    { name: "Package Sales & Discounts", updated: "2 days ago" },
                     { name: "Outstanding Payments", updated: "Yesterday" },
                   ].map((report, i) => (
                     <li key={i} className="flex items-center justify-between py-1 flex-wrap gap-2">
@@ -488,15 +531,15 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle>Patient Reports</CardTitle>
-                <CardDescription>Demographics and visit analytics</CardDescription>
+                <CardDescription>Outcomes, attendance, demographics</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    { name: "New Patient Registrations", updated: "Today" },
+                    { name: "New Case Registrations", updated: "Today" },
                     { name: "Patient Demographics", updated: "3 days ago" },
-                    { name: "Visit Frequency Analysis", updated: "Last week" },
-                    { name: "Treatment Outcomes", updated: "Yesterday" },
+                    { name: "Therapy Attendance & No-shows", updated: "Last week" },
+                    { name: "Treatment Outcomes Summary", updated: "Yesterday" },
                   ].map((report, i) => (
                     <li key={i} className="flex items-center justify-between py-1 flex-wrap gap-2">
                       <div className="flex items-center gap-2">
@@ -521,13 +564,13 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle>Operational Reports</CardTitle>
-                <CardDescription>Staff, inventory, and efficiency</CardDescription>
+                <CardDescription>Staff, rooms, and equipment</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    { name: "Staff Performance Metrics", updated: "Yesterday" },
-                    { name: "Inventory Status", updated: "Today" },
+                    { name: "Therapist Performance Metrics", updated: "Yesterday" },
+                    { name: "Equipment Status & Usage", updated: "Today" },
                     { name: "Room Utilization", updated: "2 days ago" },
                     { name: "Wait Time Analysis", updated: "Last week" },
                   ].map((report, i) => (
@@ -560,21 +603,11 @@ export default function DashboardPage() {
             <CardContent>
               <div className="space-y-4">
                 {[
-                  { user: "Dr. Johnson", report: "Monthly Revenue Summary", time: "2 hours ago", action: "Generated" },
-                  {
-                    user: "Admin Sarah",
-                    report: "Staff Performance Metrics",
-                    time: "Yesterday, 4:30 PM",
-                    action: "Viewed",
-                  },
-                  {
-                    user: "Dr. Rodriguez",
-                    report: "Patient Demographics",
-                    time: "Yesterday, 2:15 PM",
-                    action: "Generated",
-                  },
-                  { user: "Nurse Kim", report: "Inventory Status", time: "2 days ago", action: "Viewed" },
-                  { user: "Dr. Chen", report: "Treatment Outcomes", time: "3 days ago", action: "Generated" },
+                  { user: "Mohan Gandhi", report: "Monthly Revenue Summary", time: "2 hours ago", action: "Generated" },
+                  { user: "Miss Lavanya", report: "Therapy Attendance & No-shows", time: "Yesterday, 4:30 PM", action: "Viewed" },
+                  { user: "Dr. Swapna Gandhi", report: "Treatment Outcomes Summary", time: "Yesterday, 2:15 PM", action: "Generated" },
+                  { user: "Tanisha Mohanty", report: "Equipment Status & Usage", time: "2 days ago", action: "Viewed" },
+                  { user: "Dr. Bhavin Ram", report: "Wait Time Analysis", time: "3 days ago", action: "Generated" },
                 ].map((activity, i) => (
                   <div key={i} className="flex items-center justify-between flex-wrap gap-2 border-b pb-3 last:border-0 last:pb-0">
                     <div className="flex items-center gap-3">
@@ -598,12 +631,12 @@ export default function DashboardPage() {
           </Card>
         </TabsContent>
 
-        {/* Notifications Tab */}
+        {/* Notifications */}
         <TabsContent value="notifications" className="space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div>
               <h2 className="text-xl font-semibold mb-2">Notifications</h2>
-              <p className="text-sm text-muted-foreground">Stay updated with important alerts and messages</p>
+              <p className="text-sm text-muted-foreground">Updates from DakshinRehab team, therapists, and front office</p>
             </div>
             <div className="flex items-center gap-2">
               <Button variant="outline" size="sm">
@@ -617,11 +650,12 @@ export default function DashboardPage() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
+            {/* Unread */}
             <Card>
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardTitle>Unread</CardTitle>
-                  <Badge>12</Badge>
+                  <Badge>5</Badge>
                 </div>
               </CardHeader>
               <CardContent className="max-h-[400px] overflow-auto">
@@ -640,11 +674,12 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
+            {/* Today */}
             <Card>
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardTitle>Today</CardTitle>
-                  <Badge variant="outline">8</Badge>
+                  <Badge variant="outline">4</Badge>
                 </div>
               </CardHeader>
               <CardContent className="max-h-[400px] overflow-auto">
@@ -663,11 +698,12 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
+            {/* Earlier */}
             <Card>
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <CardTitle>Earlier</CardTitle>
-                  <Badge variant="outline">15</Badge>
+                  <Badge variant="outline">4</Badge>
                 </div>
               </CardHeader>
               <CardContent className="max-h-[400px] overflow-auto">

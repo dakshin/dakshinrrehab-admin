@@ -77,31 +77,9 @@ export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
       ],
     },
     {
-      title: "Ambulance",
-      href: "/ambulance",
-      icon: Ambulance,
-      submenu: [
-        { title: "Ambulance Call List", href: "/ambulance/calls" },
-        { title: "Ambulance List", href: "/ambulance/list" },
-        { title: "Ambulance Details", href: "/ambulance/details" },
-      ],
-    },
-    {
       title: "Pharmacy",
       href: "/pharmacy/medicines",
       icon: Pill,
-    },
-    {
-      title: "Blood Bank",
-      href: "/blood-bank",
-      icon: Droplet,
-      submenu: [
-        { title: "Blood Stock", href: "/blood-bank/stock" },
-        { title: "Blood Donor", href: "/blood-bank/donors" },
-        { title: "Blood Issued", href: "/blood-bank/issued" },
-        { title: "Add Blood Unit", href: "/blood-bank/add" },
-        { title: "Issue Blood", href: "/blood-bank/issue" },
-      ],
     },
     {
       title: "Billing",
@@ -115,13 +93,16 @@ export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
       ],
     },
     {
-      title: "Departments",
+      title: "Specialties & Services",
       href: "/departments",
       icon: Building2,
       submenu: [
-        { title: "Department List", href: "/departments" },
-        { title: "Add Department", href: "/departments/add" },
-        { title: "Services Offered", href: "/departments/services" },
+        { title: "Physiotherapy", href: "/departments/physiotherapy" },
+        { title: "Prosthetics & Orthotics", href: "/departments/prosthetics-orthotics" },
+        { title: "Wellness Programs", href: "/departments/wellness" },
+        { title: "Pediatric Care", href: "/departments/pediatric" },
+        { title: "Vascular Surgery", href: "/departments/vascular" },
+        { title: "Services Management", href: "/departments/services" },
       ],
     },
     {
@@ -147,23 +128,25 @@ export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
       ],
     },
     {
-      title: "Records",
-      href: "/records",
+      title: "Medical Certificates",
+      href: "/medical-certificates",
       icon: FileText,
       submenu: [
-        { title: "Birth Records", href: "/records/birth" },
-        { title: "Death Records", href: "/records/death" },
+        { title: "Fitness Certificates", href: "/medical-certificates/fitness-certificates" },
+        { title: "Disability Certificates", href: "/medical-certificates/disability-certificates" },
+        { title: "Medical Reports", href: "/medical-certificates/reports" },
       ],
     },
     {
-      title: "Room Allotment",
+      title: "Inpatient Rehab Facility",
       href: "/rooms",
       icon: Bed,
       submenu: [
-        { title: "Alloted Rooms", href: "/rooms/alloted" },
-        { title: "New Allotment", href: "/rooms/new" },
-        { title: "Rooms by Department", href: "/rooms/departments" },
-        { title: "Add New Room", href: "/rooms/add" },
+        { title: "Room Occupancy", href: "/rooms/alloted" },
+        { title: "New Admission", href: "/rooms/new" },
+        { title: "Rehab Programs", href: "/rooms/programs" },
+        { title: "Discharge Planning", href: "/rooms/discharge" },
+        { title: "Facility Management", href: "/rooms/add" },
       ],
     },
     {

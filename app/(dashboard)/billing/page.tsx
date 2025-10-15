@@ -18,7 +18,7 @@ import { useState } from "react";
 // Sample invoices data
 const invoices = [
   {
-    id: "INV-001",
+    id: "DRC-INV-001",
     patient: {
       name: "John Smith",
       image: "/colorful-abstract-shapes.png",
@@ -41,7 +41,7 @@ const invoices = [
     },
   },
   {
-    id: "INV-002",
+    id: "DRC-INV-002",
     patient: {
       name: "Emily Davis",
       image: "/colorful-abstract-shapes.png",
@@ -64,7 +64,7 @@ const invoices = [
     },
   },
   {
-    id: "INV-003",
+    id: "DRC-INV-003",
     patient: {
       name: "Robert Wilson",
       image: "/user-3.png",
@@ -87,7 +87,7 @@ const invoices = [
     },
   },
   {
-    id: "INV-004",
+    id: "DRC-INV-004",
     patient: {
       name: "Jessica Brown",
       image: "/user-3.png",
@@ -111,7 +111,7 @@ const invoices = [
     },
   },
   {
-    id: "INV-005",
+    id: "DRC-INV-005",
     patient: {
       name: "Michael Johnson",
       image: "/user-3.png",
@@ -134,7 +134,7 @@ const invoices = [
     },
   },
   {
-    id: "INV-006",
+    id: "DRC-INV-006",
     patient: {
       name: "Sarah Thompson",
       image: "/user-3.png",
@@ -157,7 +157,7 @@ const invoices = [
     },
   },
   {
-    id: "INV-007",
+    id: "DRC-INV-007",
     patient: {
       name: "David Miller",
       image: "/user-3.png",
@@ -384,8 +384,8 @@ export default function InvoicesPage() {
                             <p className="text-xs text-muted-foreground">Due: {invoice.dueDate}</p>
                           </div>
                         </TableCell>
-                        <TableCell className="text-right">${invoice.amount.toFixed(2)}</TableCell>
-                        <TableCell className="text-right">${invoice.balance.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{invoice.amount.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{invoice.balance.toFixed(2)}</TableCell>
                         <TableCell>
                           <Badge variant={invoice.status === "Paid" ? "default" : invoice.status === "Unpaid" ? "destructive" : "outline"} className={invoice.status === "Paid" ? "bg-green-500" : invoice.status === "Unpaid" ? "bg-red-500" : "border-amber-500 text-amber-500"}>
                             {invoice.status}
@@ -489,7 +489,7 @@ export default function InvoicesPage() {
                           </div>
                         </TableCell>
                         <TableCell>{invoice.date}</TableCell>
-                        <TableCell className="text-right">${invoice.amount.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{invoice.amount.toFixed(2)}</TableCell>
                         <TableCell>{invoice.dueDate}</TableCell>
                         <TableCell className="hidden md:table-cell">
                           <Badge
@@ -567,7 +567,7 @@ export default function InvoicesPage() {
                           </div>
                         </TableCell>
                         <TableCell>{invoice.date}</TableCell>
-                        <TableCell className="text-right">${invoice.amount.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{invoice.amount.toFixed(2)}</TableCell>
                         <TableCell className="hidden md:table-cell">2024-04-22</TableCell>
                         <TableCell className="hidden md:table-cell">Credit Card</TableCell>
                         <TableCell className="text-right">
@@ -634,9 +634,9 @@ export default function InvoicesPage() {
                           </div>
                         </TableCell>
                         <TableCell>{invoice.date}</TableCell>
-                        <TableCell className="text-right">${invoice.amount.toFixed(2)}</TableCell>
-                        <TableCell className="text-right">${invoice.paid.toFixed(2)}</TableCell>
-                        <TableCell className="text-right">${invoice.balance.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{invoice.amount.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{invoice.paid.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{invoice.balance.toFixed(2)}</TableCell>
                         <TableCell className="text-right">
                           <Button size="sm" className="h-8" asChild>
                             <Link href={`/billing/${invoice.id}`}>
@@ -674,7 +674,7 @@ export default function InvoicesPage() {
             <CardTitle className="text-base">Total Outstanding</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalOutstanding.toFixed(2)}</div>
+            <div className="text-2xl font-bold">₹{totalOutstanding.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">From {invoices.filter((i) => i.balance > 0).length} invoices</p>
             <div className="mt-2 h-1 w-full bg-muted">
               <div
@@ -691,7 +691,7 @@ export default function InvoicesPage() {
             <CardTitle className="text-base">Paid This Month</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$1,245.00</div>
+            <div className="text-2xl font-bold">₹1,245.00</div>
             <p className="text-xs text-muted-foreground">+12% from last month</p>
             <div className="mt-2 h-1 w-full bg-muted">
               <div className="h-1 bg-green-500" style={{ width: "65%" }} />
@@ -704,7 +704,7 @@ export default function InvoicesPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{overdueCount}</div>
-            <p className="text-xs text-muted-foreground">Total: $980.00</p>
+            <p className="text-xs text-muted-foreground">Total: ₹980.00</p>
             <div className="mt-2 h-1 w-full bg-muted">
               <div className="h-1 bg-red-500" style={{ width: "15%" }} />
             </div>
@@ -716,7 +716,7 @@ export default function InvoicesPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">5</div>
-            <p className="text-xs text-muted-foreground">Pending: $1,640.00</p>
+            <p className="text-xs text-muted-foreground">Pending: ₹1,640.00</p>
             <div className="mt-2 h-1 w-full bg-muted">
               <div className="h-1 bg-blue-500" style={{ width: "40%" }} />
             </div>

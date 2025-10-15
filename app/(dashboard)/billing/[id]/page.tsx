@@ -12,7 +12,7 @@ import { use } from "react";
 // Sample invoices data - this would normally come from an API or database
 const invoices = [
   {
-    id: "INV-001",
+    id: "DRC-INV-001",
     patient: {
       name: "John Smith",
       image: "/colorful-abstract-shapes.png",
@@ -28,8 +28,8 @@ const invoices = [
     balance: 50.0,
     status: "Partially Paid",
     items: [
-      { description: "General Consultation", quantity: 1, unitPrice: 150.0, amount: 150.0 },
-      { description: "Blood Test", quantity: 1, unitPrice: 100.0, amount: 100.0 },
+      { description: "General Consultation", quantity: 1, unitPrice: 150.0, amount: 150.0, hsnCode: "9904", gstRate: 18 },
+      { description: "Blood Test", quantity: 1, unitPrice: 100.0, amount: 100.0, hsnCode: "9018", gstRate: 12 },
     ],
     insurance: {
       provider: "Blue Cross Blue Shield",
@@ -44,7 +44,7 @@ const invoices = [
     notes: "Patient requested itemized receipt for insurance reimbursement.",
   },
   {
-    id: "INV-002",
+    id: "DRC-INV-002",
     patient: {
       name: "Emily Davis",
       image: "/colorful-abstract-shapes.png",
@@ -60,8 +60,8 @@ const invoices = [
     balance: 350.0,
     status: "Unpaid",
     items: [
-      { description: "Specialist Consultation", quantity: 1, unitPrice: 200.0, amount: 200.0 },
-      { description: "X-Ray", quantity: 1, unitPrice: 150.0, amount: 150.0 },
+      { description: "Specialist Consultation", quantity: 1, unitPrice: 200.0, amount: 200.0, hsnCode: "9904", gstRate: 18 },
+      { description: "X-Ray", quantity: 1, unitPrice: 150.0, amount: 150.0, hsnCode: "9022", gstRate: 12 },
     ],
     insurance: {
       provider: "Aetna",
@@ -76,7 +76,7 @@ const invoices = [
     notes: "",
   },
   {
-    id: "INV-003",
+    id: "DRC-INV-003",
     patient: {
       name: "Robert Wilson",
       image: "/user-3.png",
@@ -92,8 +92,8 @@ const invoices = [
     balance: 0.0,
     status: "Paid",
     items: [
-      { description: "Follow-up Consultation", quantity: 1, unitPrice: 100.0, amount: 100.0 },
-      { description: "Prescription Renewal", quantity: 1, unitPrice: 75.0, amount: 75.0 },
+      { description: "Follow-up Consultation", quantity: 1, unitPrice: 100.0, amount: 100.0, hsnCode: "9904", gstRate: 18 },
+      { description: "Prescription Renewal", quantity: 1, unitPrice: 75.0, amount: 75.0, hsnCode: "9904", gstRate: 18 },
     ],
     insurance: {
       provider: "UnitedHealthcare",
@@ -114,10 +114,17 @@ export default function InvoiceDetailsPage({ params }: { params: Promise<{ id: s
   const {id} = use(params)
   const invoice = invoices.find((inv) => inv.id === id) || invoices[0];
 
-  // Calculate subtotal, tax, and total
+  // Calculate subtotal, GST, and total
   const subtotal = invoice.items.reduce((sum, item) => sum + item.amount, 0);
-  const tax = subtotal * 0.08; // Assuming 8% tax
-  const total = subtotal + tax;
+  let cgst = 0;
+  let sgst = 0;
+  invoice.items.forEach(item => {
+    const gstAmount = (item.amount * item.gstRate) / 100;
+    cgst += gstAmount / 2;
+    sgst += gstAmount / 2;
+  });
+  const totalGst = cgst + sgst;
+  const total = subtotal + totalGst;
 
   return (
     <div className="flex flex-col gap-6">
@@ -241,6 +248,8 @@ export default function InvoiceDetailsPage({ params }: { params: Promise<{ id: s
             <TableHeader>
               <TableRow>
                 <TableHead>Description</TableHead>
+                <TableHead>HSN Code</TableHead>
+                <TableHead className="text-right">GST %</TableHead>
                 <TableHead className="text-right">Quantity</TableHead>
                 <TableHead className="text-right">Unit Price</TableHead>
                 <TableHead className="text-right">Amount</TableHead>
@@ -250,9 +259,11 @@ export default function InvoiceDetailsPage({ params }: { params: Promise<{ id: s
               {invoice.items.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell>{item.description}</TableCell>
+                  <TableCell className="font-mono">{item.hsnCode}</TableCell>
+                  <TableCell className="text-right">{item.gstRate}%</TableCell>
                   <TableCell className="text-right">{item.quantity}</TableCell>
-                  <TableCell className="text-right">${item.unitPrice.toFixed(2)}</TableCell>
-                  <TableCell className="text-right">${item.amount.toFixed(2)}</TableCell>
+                  <TableCell className="text-right">₹{item.unitPrice.toFixed(2)}</TableCell>
+                  <TableCell className="text-right">₹{item.amount.toFixed(2)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -262,24 +273,28 @@ export default function InvoiceDetailsPage({ params }: { params: Promise<{ id: s
           <div className="ml-auto space-y-2">
             <div className="flex justify-between text-sm">
               <span className="font-medium">Subtotal:</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>₹{subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="font-medium">Tax (8%):</span>
-              <span>${tax.toFixed(2)}</span>
+              <span className="font-medium">CGST:</span>
+              <span>₹{cgst.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="font-medium">SGST:</span>
+              <span>₹{sgst.toFixed(2)}</span>
             </div>
             <Separator />
             <div className="flex justify-between">
               <span className="text-base font-bold">Total:</span>
-              <span className="text-base font-bold">${total.toFixed(2)}</span>
+              <span className="text-base font-bold">₹{total.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="font-medium">Amount Paid:</span>
-              <span>${invoice.paid.toFixed(2)}</span>
+              <span>₹{invoice.paid.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="font-medium">Balance Due:</span>
-              <span className="font-bold">${invoice.balance.toFixed(2)}</span>
+              <span className="font-bold">₹{invoice.balance.toFixed(2)}</span>
             </div>
           </div>
         </CardFooter>
@@ -317,7 +332,7 @@ export default function InvoiceDetailsPage({ params }: { params: Promise<{ id: s
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Claim Amount</p>
-                  <p>${invoice.insurance.claimAmount.toFixed(2)}</p>
+                  <p>₹{invoice.insurance.claimAmount.toFixed(2)}</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Claim Date</p>
@@ -325,7 +340,7 @@ export default function InvoiceDetailsPage({ params }: { params: Promise<{ id: s
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Patient Responsibility</p>
-                  <p>${(total - invoice.insurance.claimAmount).toFixed(2)}</p>
+                  <p>₹{(total - invoice.insurance.claimAmount).toFixed(2)}</p>
                 </div>
               </div>
             </CardContent>
@@ -360,7 +375,7 @@ export default function InvoiceDetailsPage({ params }: { params: Promise<{ id: s
                         <TableCell>{payment.date}</TableCell>
                         <TableCell>{payment.reference}</TableCell>
                         <TableCell>{payment.method}</TableCell>
-                        <TableCell className="text-right">${payment.amount.toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{payment.amount.toFixed(2)}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

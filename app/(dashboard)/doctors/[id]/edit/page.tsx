@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronLeft, Save } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -65,12 +65,12 @@ const departments = ["Cardiology", "Neurology", "Pediatrics", "Orthopedics", "De
 
 const statuses = ["Active", "On Leave", "Inactive"];
 
-export default function EditDoctorPage({ params }: { params: Promise<{ id: string }> }) {
+export default function EditDoctorPage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const id = params.id;
 
   // Initialize form with doctor data
-  const { id } = use(params);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

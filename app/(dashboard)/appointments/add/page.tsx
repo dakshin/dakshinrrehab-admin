@@ -1,148 +1,135 @@
 "use client";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Clock, Search } from "lucide-react";
+import { ArrowLeft, CalendarDays } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// Sample doctors data
-const doctors = [
-  {
-    id: "1",
-    name: "Dr. Sarah Johnson",
-    image: "/colorful-abstract-shapes.png",
-    specialty: "Cardiology",
-    availability: ["Monday", "Wednesday", "Friday"],
+// Specialty-based data from documentation
+const specialtyData = {
+  physiotherapy: {
+    reasons: [
+      "Back Pain",
+      "Knee Pain", 
+      "Sciatica",
+      "Post-Surgery Rehab",
+      "Frozen Shoulder",
+      "ACL Injury",
+      "Stroke Rehab",
+      "Plantar Fasciitis"
+    ],
+    timeSlots: [
+      "09:00–09:45",
+      "10:00–10:45", 
+      "11:00–11:45",
+      "12:00–12:45",
+      "03:30–04:15",
+      "04:30–05:15",
+      "06:00–06:45",
+      "07:00–07:45"
+    ]
   },
-  {
-    id: "2",
-    name: "Dr. Michael Chen",
-    image: "/colorful-abstract-shapes.png",
-    specialty: "Neurology",
-    availability: ["Tuesday", "Thursday"],
+  "prosthetics-orthotics": {
+    reasons: ["Amputee Rehab", "Limb Fitting", "Prosthetic Adjustment"],
+    timeSlots: [
+      "10:00–10:45",
+      "11:00–11:45",
+      "12:00–12:45", 
+      "04:30–05:15",
+      "06:00–06:45"
+    ]
   },
-  {
-    id: "3",
-    name: "Dr. Lisa Patel",
-    image: "/user-3.png",
-    specialty: "Pediatrics",
-    availability: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+  pediatrics: {
+    reasons: ["Well Baby Check", "Vaccination"],
+    timeSlots: ["04:30–05:30"]
   },
-  {
-    id: "4",
-    name: "Dr. James Wilson",
-    image: "/user-3.png",
-    specialty: "Orthopedics",
-    availability: ["Monday", "Wednesday", "Friday"],
+  vascular: {
+    reasons: ["Consultation Required"],
+    timeSlots: ["06:00–06:45", "07:00–07:45"]
   },
-  {
-    id: "5",
-    name: "Dr. Emily Rodriguez",
-    image: "/user-3.png",
-    specialty: "Dermatology",
-    availability: ["Tuesday", "Thursday"],
+  wellness: {
+    reasons: [
+      "InBody Analysis",
+      "Muscle Strength Test", 
+      "Foot Scan",
+      "Gait Analysis",
+      "Clinical Pilates",
+      "Infrared Sauna",
+      "Body Assessment"
+    ],
+    timeSlots: [
+      "09:00–09:45",
+      "10:00–10:45",
+      "11:00–11:45", 
+      "12:00–12:45",
+      "03:30–04:15",
+      "04:30–05:15",
+      "06:00–06:45",
+      "07:00–07:45"
+    ]
   },
-];
-
-// Sample patients data
-const patients = [
-  {
-    id: "1",
-    name: "John Smith",
-    image: "/colorful-abstract-shapes.png",
-    dob: "1978-05-15",
-    phone: "+1 (555) 123-4567",
-    email: "john.smith@example.com",
-  },
-  {
-    id: "2",
-    name: "Emily Davis",
-    image: "/colorful-abstract-shapes.png",
-    dob: "1990-08-22",
-    phone: "+1 (555) 234-5678",
-    email: "emily.davis@example.com",
-  },
-  {
-    id: "3",
-    name: "Robert Wilson",
-    image: "/user-3.png",
-    dob: "1965-03-10",
-    phone: "+1 (555) 345-6789",
-    email: "robert.wilson@example.com",
-  },
-  {
-    id: "4",
-    name: "Jessica Brown",
-    image: "/user-3.png",
-    dob: "1995-11-28",
-    phone: "+1 (555) 456-7890",
-    email: "jessica.brown@example.com",
-  },
-  {
-    id: "5",
-    name: "Michael Johnson",
-    image: "/user-3.png",
-    dob: "1982-07-03",
-    phone: "+1 (555) 567-8901",
-    email: "michael.johnson@example.com",
-  },
-];
-
-// Sample appointment types
-const appointmentTypes = [
-  { id: "1", name: "Check-up", duration: 30, color: "blue" },
-  { id: "2", name: "Consultation", duration: 45, color: "green" },
-  { id: "3", name: "Follow-up", duration: 20, color: "purple" },
-  { id: "4", name: "Procedure", duration: 60, color: "orange" },
-  { id: "5", name: "Emergency", duration: 60, color: "red" },
-  { id: "6", name: "Vaccination", duration: 15, color: "teal" },
-  { id: "7", name: "Lab Work", duration: 30, color: "indigo" },
-  { id: "8", name: "Physical Therapy", duration: 45, color: "amber" },
-];
-
-// Sample time slots
-const timeSlots = ["09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM"];
+  "free-health-camps": {
+    reasons: ["General Screening", "Pain & Mobility Check", "InBody Assessment"],
+    timeSlots: []
+  }
+};
 
 export default function AddAppointmentPage() {
-  const [selectedPatient, setSelectedPatient] = useState<any>(null);
-  const [selectedDoctor, setSelectedDoctor] = useState<any>(null);
-  const [appointmentType, setAppointmentType] = useState("");
-  const [appointmentDate, setAppointmentDate] = useState<Date | undefined>(new Date());
-  const [appointmentTime, setAppointmentTime] = useState("");
-  const [duration, setDuration] = useState("30");
-  const [reason, setReason] = useState("");
-  const [status, setStatus] = useState("scheduled");
-  const [notes, setNotes] = useState("");
-  const [formErrors, setFormErrors] = useState<any>({});
+  const [formData, setFormData] = useState({
+    fullName: "",
+    age: "",
+    sex: "",
+    phoneNumber: "",
+    email: "",
+    medicalHistory: "",
+    speciality: "",
+    reason: "",
+    preferredDate: undefined as Date | undefined,
+    preferredTime: "",
+    additionalInformation: "",
+    // Referral doctor details
+    referralDoctorName: "",
+    referralDoctorPhone: "",
+    referralDoctorSpeciality: "",
+    referralHospital: "",
+    prescriptionDetails: ""
+  });
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const [availableReasons, setAvailableReasons] = useState<string[]>([]);
+  const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
+  const [isCampRegistration, setIsCampRegistration] = useState(false);
 
-    // Basic validation
-    const errors: any = {};
-    if (!selectedPatient) errors.patient = "Please select a patient";
-    if (!selectedDoctor) errors.doctor = "Please select a doctor";
-    if (!appointmentType) errors.type = "Please select an appointment type";
-    if (!appointmentDate) errors.date = "Please select a date";
-    if (!appointmentTime) errors.time = "Please select a time";
+  const handleInputChange = (field: string, value: string | Date | undefined) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
+  // Update reasons and time slots when specialty changes
+  useEffect(() => {
+    if (formData.speciality && specialtyData[formData.speciality as keyof typeof specialtyData]) {
+      const data = specialtyData[formData.speciality as keyof typeof specialtyData];
+      setAvailableReasons(data.reasons);
+      setAvailableTimeSlots(data.timeSlots);
+      setIsCampRegistration(formData.speciality === "free-health-camps");
+      
+      // Reset reason and time when specialty changes
+      setFormData(prev => ({ ...prev, reason: "", preferredTime: "" }));
     }
+  }, [formData.speciality]);
 
-    // Submit form logic would go here
-    alert("Appointment scheduled successfully!");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Appointment data:", formData);
+    
+    const message = isCampRegistration 
+      ? "Camp registration recorded successfully!" 
+      : "Appointment booked successfully!";
+    alert(message);
   };
 
   return (
@@ -160,265 +147,266 @@ export default function AddAppointmentPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <div className="lg:col-span-2 space-y-5">
-          <Card>
-            <CardHeader>
-              <CardTitle>Appointment Details</CardTitle>
-              <CardDescription>Enter the details for the new appointment.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="appointment-type">Appointment Type</Label>
-                  <Select value={appointmentType} onValueChange={setAppointmentType}>
-                    <SelectTrigger id="appointment-type" className={formErrors.type ? "border-red-500" : ""}>
-                      <SelectValue placeholder="Select appointment type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {appointmentTypes.map((type) => (
-                        <SelectItem key={type.id} value={type.id}>
-                          <div className="flex items-center">
-                            <div className="h-2 w-2 rounded-full mr-2" style={{ backgroundColor: `var(--${type.color}-500, #3b82f6)` }} />
-                            {type.name} ({type.duration} min)
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {formErrors.type && <p className="text-xs text-red-500 mt-1">{formErrors.type}</p>}
-                </div>
-
-                <div className="space-y-2">
-                  <Label>Date</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="outline" className={`w-full justify-start text-left font-normal ${formErrors.date ? "border-red-500" : ""}`}>
-                        <span>{appointmentDate ? appointmentDate.toDateString() : "Pick a date"}</span>
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar mode="single" selected={appointmentDate} onSelect={setAppointmentDate} />
-                    </PopoverContent>
-                  </Popover>
-                  {formErrors.date && <p className="text-xs text-red-500 mt-1">{formErrors.date}</p>}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="time">Time</Label>
-                  <Select value={appointmentTime} onValueChange={setAppointmentTime}>
-                    <SelectTrigger id="time" className={formErrors.time ? "border-red-500" : ""}>
-                      <SelectValue placeholder="Select time slot" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {timeSlots.map((slot) => (
-                        <SelectItem key={slot} value={slot}>
-                          <div className="flex items-center">
-                            <Clock className="mr-2 h-4 w-4" />
-                            {slot}
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {formErrors.time && <p className="text-xs text-red-500 mt-1">{formErrors.time}</p>}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="duration">Duration (minutes)</Label>
-                  <Select value={duration} onValueChange={setDuration}>
-                    <SelectTrigger id="duration">
-                      <SelectValue placeholder="Select duration" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="15">15 minutes</SelectItem>
-                      <SelectItem value="20">20 minutes</SelectItem>
-                      <SelectItem value="30">30 minutes</SelectItem>
-                      <SelectItem value="45">45 minutes</SelectItem>
-                      <SelectItem value="60">60 minutes</SelectItem>
-                      <SelectItem value="90">90 minutes</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="reason">Reason for Visit</Label>
-                  <Textarea id="reason" value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Enter the reason for the appointment" className="min-h-[100px]" />
-                </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Patient Details Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Patient Details</CardTitle>
+            <CardDescription>Enter patient information for the appointment.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="fullName">Full Name</Label>
+              <Input
+                id="fullName"
+                placeholder="Enter full name"
+                value={formData.fullName}
+                onChange={(e) => handleInputChange("fullName", e.target.value)}
+                required
+              />
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="age">Age</Label>
+                <Input
+                  id="age"
+                  type="number"
+                  placeholder="Enter age"
+                  value={formData.age}
+                  onChange={(e) => handleInputChange("age", e.target.value)}
+                  required
+                />
               </div>
-
-              <Separator />
-
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Appointment Status</h3>
-                <RadioGroup value={status} onValueChange={setStatus} className="flex flex-col space-y-1">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="scheduled" id="scheduled" />
-                    <Label htmlFor="scheduled">Scheduled</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="tentative" id="tentative" />
-                    <Label htmlFor="tentative">Tentative (Pending Confirmation)</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="waitlist" id="waitlist" />
-                    <Label htmlFor="waitlist">Add to Waitlist</Label>
-                  </div>
-                </RadioGroup>
+              <div className="space-y-2">
+                <Label htmlFor="sex">Sex</Label>
+                <Select value={formData.sex} onValueChange={(value) => handleInputChange("sex", value)}>
+                  <SelectTrigger id="sex">
+                    <SelectValue placeholder="Select sex" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="male">Male</SelectItem>
+                    <SelectItem value="female">Female</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
+            </div>
 
-              <Separator />
-
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Additional Information</h3>
-                <div className="space-y-2">
-                  <Label htmlFor="notes">Notes for Staff</Label>
-                  <Textarea id="notes" value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Enter any additional notes for staff" />
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="phoneNumber">Phone Number</Label>
+                <Input
+                  id="phoneNumber"
+                  placeholder="Enter phone number"
+                  value={formData.phoneNumber}
+                  onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
+                  required
+                />
               </div>
-            </CardContent>
-          </Card>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address (Optional)</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter email address"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                />
+              </div>
+            </div>
 
-          <div className="flex justify-end gap-4">
-            <Button variant="outline" asChild>
-              <Link href="/appointments">Cancel</Link>
-            </Button>
-            <Button onClick={handleSubmit}>Schedule Appointment</Button>
-          </div>
-        </div>
+            <div className="space-y-2">
+              <Label htmlFor="medicalHistory">Medical History (Optional)</Label>
+              <Textarea
+                id="medicalHistory"
+                placeholder="Enter relevant medical history"
+                value={formData.medicalHistory}
+                onChange={(e) => handleInputChange("medicalHistory", e.target.value)}
+                className="min-h-[80px]"
+              />
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="space-y-5">
-          <Card>
-            <CardHeader>
-              <CardTitle>Select Patient</CardTitle>
-              <CardDescription>Search and select a patient for this appointment.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" className={`w-full justify-between ${formErrors.patient ? "border-red-500" : ""}`}>
-                    <span>{selectedPatient ? selectedPatient.name : "Search patients..."}</span>
-                    <Search className="h-4 w-4 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-[300px] p-0" align="start">
-                  <Command>
-                    <CommandInput placeholder="Search patients..." />
-                    <CommandList>
-                      <CommandEmpty>No patients found.</CommandEmpty>
-                      <CommandGroup>
-                        {patients.map((patient) => (
-                          <CommandItem key={patient.id} value={patient.name} onSelect={() => setSelectedPatient(patient)}>
-                            <div className="flex items-center gap-2">
-                              <Avatar className="h-8 w-8">
-                                <AvatarImage src={patient.image || "/user-2.png?height=40&width=40&query=patient"} alt={patient.name} />
-                                <AvatarFallback>{patient.name.charAt(0)}</AvatarFallback>
-                              </Avatar>
-                              <div>
-                                <p className="text-sm font-medium">{patient.name}</p>
-                                <p className="text-xs text-muted-foreground">DOB: {patient.dob}</p>
-                              </div>
-                            </div>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              {formErrors.patient && <p className="text-xs text-red-500 mt-1">{formErrors.patient}</p>}
-
-              {selectedPatient && (
-                <div className="p-4 border rounded-md">
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage src={selectedPatient.image || "/user-2.png"} alt={selectedPatient.name} />
-                      <AvatarFallback>{selectedPatient.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="font-medium">{selectedPatient.name}</p>
-                      <p className="text-sm text-muted-foreground">DOB: {selectedPatient.dob}</p>
-                    </div>
-                  </div>
-                  <div className="mt-3 text-sm space-y-1">
-                    <p>Phone: {selectedPatient.phone}</p>
-                    <p>Email: {selectedPatient.email}</p>
-                  </div>
-                  <Button variant="link" className="p-0 h-auto mt-2 text-sm">
-                    View patient details
-                  </Button>
-                </div>
-              )}
-
-              <Button variant="outline" className="w-full" asChild>
-                <Link href="/patients/add">Register New Patient</Link>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Select Doctor</CardTitle>
-              <CardDescription>Choose a doctor for this appointment.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <Select
-                value={selectedDoctor ? selectedDoctor.id : ""}
-                onValueChange={(value) => {
-                  const doctor = doctors.find((d) => d.id === value);
-                  setSelectedDoctor(doctor);
-                }}
-              >
-                <SelectTrigger className={formErrors.doctor ? "border-red-500" : ""}>
-                  <SelectValue placeholder="Select a doctor" />
+        {/* Appointment Details Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Appointment Details</CardTitle>
+            <CardDescription>Select specialty, reason, and preferred time slot.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="speciality">Speciality</Label>
+              <Select value={formData.speciality} onValueChange={(value) => handleInputChange("speciality", value)}>
+                <SelectTrigger id="speciality">
+                  <SelectValue placeholder="Select speciality" />
                 </SelectTrigger>
                 <SelectContent>
-                  {doctors.map((doctor) => (
-                    <SelectItem key={doctor.id} value={doctor.id}>
-                      <div className="flex items-center gap-2">
-                        <Avatar className="h-6 w-6">
-                          <AvatarImage src={doctor.image || "/user-2.png?height=40&width=40&query=doctor"} alt={doctor.name} />
-                          <AvatarFallback>{doctor.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <span>{doctor.name}</span>
-                      </div>
-                    </SelectItem>
+                  <SelectItem value="physiotherapy">Physiotherapy</SelectItem>
+                  <SelectItem value="prosthetics-orthotics">Prosthetics & Orthotics</SelectItem>
+                  <SelectItem value="pediatrics">Pediatrics</SelectItem>
+                  <SelectItem value="vascular">Vascular</SelectItem>
+                  <SelectItem value="wellness">Wellness</SelectItem>
+                  <SelectItem value="free-health-camps">Free Health Camps</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="reason">Reason for Consultation</Label>
+              <Select 
+                value={formData.reason} 
+                onValueChange={(value) => handleInputChange("reason", value)}
+                disabled={!formData.speciality}
+              >
+                <SelectTrigger id="reason">
+                  <SelectValue placeholder={formData.speciality ? "Select reason" : "Select speciality first"} />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableReasons.map((reason) => (
+                    <SelectItem key={reason} value={reason}>{reason}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              {formErrors.doctor && <p className="text-xs text-red-500 mt-1">{formErrors.doctor}</p>}
+            </div>
 
-              {selectedDoctor && (
-                <div className="p-4 border rounded-md">
-                  <div className="flex items-center gap-3">
-                    <Avatar>
-                      <AvatarImage src={selectedDoctor.image || "/user-2.png"} alt={selectedDoctor.name} />
-                      <AvatarFallback>{selectedDoctor.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="font-medium">{selectedDoctor.name}</p>
-                      <p className="text-sm text-muted-foreground">{selectedDoctor.specialty}</p>
-                    </div>
-                  </div>
-                  <div className="mt-3">
-                    <p className="text-sm font-medium">Availability:</p>
-                    <div className="flex flex-wrap gap-1 mt-1">
-                      {selectedDoctor.availability.map((day: any) => (
-                        <span key={day} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                          {day}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <Button variant="link" className="p-0 h-auto mt-2 text-sm" asChild>
-                    <Link href={`/doctors/${selectedDoctor.id}/schedule`}>View doctor schedule</Link>
+            <div className="space-y-2">
+              <Label>Preferred Date</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" className="w-full justify-start text-left font-normal">
+                    <CalendarDays className="mr-2 h-4 w-4" />
+                    {formData.preferredDate ? formData.preferredDate.toDateString() : "Pick a date"}
                   </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={formData.preferredDate}
+                    onSelect={(date) => handleInputChange("preferredDate", date)}
+                    disabled={(date) => date < new Date()}
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="preferredTime">Preferred Time</Label>
+              {isCampRegistration ? (
+                <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
+                  <p className="text-sm text-blue-700">Camp Registration Mode – Time slots not required.</p>
                 </div>
+              ) : (
+                <Select 
+                  value={formData.preferredTime} 
+                  onValueChange={(value) => handleInputChange("preferredTime", value)}
+                  disabled={!formData.speciality || isCampRegistration}
+                >
+                  <SelectTrigger id="preferredTime">
+                    <SelectValue placeholder={formData.speciality ? "Select time slot" : "Select speciality first"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableTimeSlots.map((slot) => (
+                      <SelectItem key={slot} value={slot}>{slot}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Referral Doctor Details Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Referral Doctor Details (Optional)</CardTitle>
+            <CardDescription>If patient was referred by another doctor, enter details below.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="referralDoctorName">Doctor Name</Label>
+                <Input
+                  id="referralDoctorName"
+                  placeholder="Dr. Name"
+                  value={formData.referralDoctorName}
+                  onChange={(e) => handleInputChange("referralDoctorName", e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="referralDoctorPhone">Doctor Phone</Label>
+                <Input
+                  id="referralDoctorPhone"
+                  placeholder="Enter phone number"
+                  value={formData.referralDoctorPhone}
+                  onChange={(e) => handleInputChange("referralDoctorPhone", e.target.value)}
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="referralDoctorSpeciality">Doctor Speciality</Label>
+                <Input
+                  id="referralDoctorSpeciality"
+                  placeholder="e.g., Orthopedic, General Medicine"
+                  value={formData.referralDoctorSpeciality}
+                  onChange={(e) => handleInputChange("referralDoctorSpeciality", e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="referralHospital">Hospital/Clinic</Label>
+                <Input
+                  id="referralHospital"
+                  placeholder="Hospital or clinic name"
+                  value={formData.referralHospital}
+                  onChange={(e) => handleInputChange("referralHospital", e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="prescriptionDetails">Prescription Details</Label>
+              <Textarea
+                id="prescriptionDetails"
+                placeholder="Enter prescription details or recommendations"
+                value={formData.prescriptionDetails}
+                onChange={(e) => handleInputChange("prescriptionDetails", e.target.value)}
+                className="min-h-[80px]"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Additional Information Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Additional Information</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Label htmlFor="additionalInformation">Additional Information (Optional)</Label>
+              <Textarea
+                id="additionalInformation"
+                placeholder="Enter any additional notes or special requirements"
+                value={formData.additionalInformation}
+                onChange={(e) => handleInputChange("additionalInformation", e.target.value)}
+                className="min-h-[80px]"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="flex justify-end gap-4">
+          <Button variant="outline" type="button" asChild>
+            <Link href="/appointments">Cancel</Link>
+          </Button>
+          <Button type="submit">
+            {isCampRegistration ? "Register for Camp" : "Book Appointment"}
+          </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

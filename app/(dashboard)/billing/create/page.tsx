@@ -73,22 +73,54 @@ const patients = [
   },
 ];
 
-// Sample services and items
+// Healthcare services with correct HSN codes & GST rates as per Indian regulations
 const services = [
-  { id: "S001", name: "General Consultation", category: "Consultation", price: 150.0 },
-  { id: "S002", name: "Specialist Consultation", category: "Consultation", price: 200.0 },
-  { id: "S003", name: "Follow-up Consultation", category: "Consultation", price: 100.0 },
-  { id: "S004", name: "Blood Test - Basic Panel", category: "Laboratory", price: 80.0 },
-  { id: "S005", name: "Blood Test - Comprehensive Panel", category: "Laboratory", price: 150.0 },
-  { id: "S006", name: "Urinalysis", category: "Laboratory", price: 50.0 },
-  { id: "S007", name: "X-Ray - Chest", category: "Radiology", price: 200.0 },
-  { id: "S008", name: "X-Ray - Extremity", category: "Radiology", price: 150.0 },
-  { id: "S009", name: "ECG", category: "Cardiology", price: 120.0 },
-  { id: "S010", name: "Physical Therapy Session", category: "Therapy", price: 100.0 },
-  { id: "S011", name: "Vaccination - Flu", category: "Preventive", price: 45.0 },
-  { id: "S012", name: "Vaccination - COVID-19", category: "Preventive", price: 0.0 },
-  { id: "S013", name: "Dental Cleaning", category: "Dental", price: 120.0 },
-  { id: "S014", name: "Dental X-Ray", category: "Dental", price: 80.0 },
+  // Healthcare Services (Exempt under Notification 12/2017)
+  { id: "C001", name: "Physical Therapist Consultation", category: "Consultation", price: 500.0, hsnCode: "9904", gstRate: 0 },
+  { id: "C002", name: "Prosthetist/Orthotist Consultation", category: "Consultation", price: 600.0, hsnCode: "9904", gstRate: 0 },
+  { id: "C003", name: "Vascular Surgeon Consultation", category: "Consultation", price: 800.0, hsnCode: "9904", gstRate: 0 },
+  { id: "C004", name: "Pediatric Orthopedic Consultation", category: "Consultation", price: 700.0, hsnCode: "9904", gstRate: 0 },
+  { id: "C005", name: "Follow-up Consultation", category: "Consultation", price: 300.0, hsnCode: "9904", gstRate: 0 },
+  
+  // Physiotherapy Services (Healthcare services - Exempt)
+  { id: "P001", name: "Stroke Rehabilitation Session", category: "Physiotherapy", price: 800.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P002", name: "Back Pain Treatment", category: "Physiotherapy", price: 600.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P003", name: "Knee Pain Treatment", category: "Physiotherapy", price: 650.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P004", name: "Sciatica Treatment", category: "Physiotherapy", price: 700.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P005", name: "Post-Surgery Rehabilitation", category: "Physiotherapy", price: 900.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P006", name: "Frozen Shoulder Treatment", category: "Physiotherapy", price: 650.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P007", name: "ACL Injury Rehabilitation", category: "Physiotherapy", price: 850.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P008", name: "Plantar Fasciitis Treatment", category: "Physiotherapy", price: 550.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P009", name: "Parkinson's Therapy Session", category: "Physiotherapy", price: 900.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P010", name: "Sports Injury Treatment", category: "Physiotherapy", price: 750.0, hsnCode: "9904", gstRate: 0 },
+  { id: "P011", name: "Vertigo Treatment", category: "Physiotherapy", price: 600.0, hsnCode: "9904", gstRate: 0 },
+  
+  // Prosthetics & Orthotics (Medical devices for disabled - Exempt under Schedule III)
+  { id: "O001", name: "Below Knee Prosthetic Limb", category: "Prosthetics", price: 25000.0, hsnCode: "90211010", gstRate: 0 },
+  { id: "O002", name: "Above Knee Prosthetic Limb", category: "Prosthetics", price: 35000.0, hsnCode: "90211010", gstRate: 0 },
+  { id: "O003", name: "Knee Ankle Foot Orthosis (KAFO)", category: "Orthotics", price: 12000.0, hsnCode: "90211090", gstRate: 0 },
+  { id: "O004", name: "Ankle Foot Orthosis (AFO)", category: "Orthotics", price: 8000.0, hsnCode: "90211090", gstRate: 0 },
+  { id: "O005", name: "Spinal Orthosis (Back Support)", category: "Orthotics", price: 15000.0, hsnCode: "90211090", gstRate: 0 },
+  { id: "O006", name: "Hand Splint", category: "Orthotics", price: 3000.0, hsnCode: "90211090", gstRate: 0 },
+  { id: "O007", name: "Prosthetic Socket Replacement", category: "Prosthetics", price: 8000.0, hsnCode: "90212100", gstRate: 0 },
+  { id: "O008", name: "Prosthetic Foot Component", category: "Prosthetics", price: 6000.0, hsnCode: "90212100", gstRate: 0 },
+  { id: "O009", name: "Wheelchair (Manual)", category: "Mobility Aid", price: 5000.0, hsnCode: "87131000", gstRate: 0 },
+  { id: "O010", name: "Wheelchair (Electric)", category: "Mobility Aid", price: 25000.0, hsnCode: "87139000", gstRate: 5 },
+  { id: "O011", name: "Walking Aids/Crutches", category: "Mobility Aid", price: 1500.0, hsnCode: "90211090", gstRate: 0 },
+  { id: "O012", name: "Hearing Aid", category: "Medical Device", price: 15000.0, hsnCode: "90214000", gstRate: 5 },
+  
+  // Medical Equipment & Supplies (5% GST)
+  { id: "M001", name: "Blood Pressure Monitor", category: "Medical Equipment", price: 3000.0, hsnCode: "90181900", gstRate: 5 },
+  { id: "M002", name: "Pulse Oximeter", category: "Medical Equipment", price: 2500.0, hsnCode: "90181990", gstRate: 5 },
+  { id: "M003", name: "Nebulizer", category: "Medical Equipment", price: 4000.0, hsnCode: "90192000", gstRate: 5 },
+  { id: "M004", name: "Digital Thermometer", category: "Medical Equipment", price: 500.0, hsnCode: "90251100", gstRate: 5 },
+  { id: "M005", name: "Compression Stockings", category: "Medical Supply", price: 800.0, hsnCode: "61159900", gstRate: 5 },
+  
+  // Wellness & Preventive Services (18% GST - Not medical treatment)
+  { id: "W001", name: "Wellness Check-up Package", category: "Wellness", price: 2500.0, hsnCode: "998999", gstRate: 18 },
+  { id: "W002", name: "Executive Health Assessment", category: "Wellness", price: 5000.0, hsnCode: "998999", gstRate: 18 },
+  { id: "W003", name: "Fitness Assessment", category: "Wellness", price: 1500.0, hsnCode: "998999", gstRate: 18 },
+  { id: "W004", name: "Ergonomic Assessment", category: "Wellness", price: 3000.0, hsnCode: "998999", gstRate: 18 },
 ];
 
 // Sample payment methods
@@ -98,12 +130,12 @@ export default function CreateInvoicePage() {
   const [invoiceDate, setInvoiceDate] = useState<Date | undefined>(new Date());
   const [dueDate, setDueDate] = useState<Date | undefined>(new Date());
   const [items, setItems] = useState([
-    { id: 1, serviceId: "", description: "", quantity: 1, unitPrice: 0 },
-    { id: 2, serviceId: "S004", description: "", quantity: 1, unitPrice: 80 },
+    { id: 1, serviceId: "", description: "", quantity: 1, unitPrice: 0, hsnCode: "", gstRate: 0 },
+    { id: 2, serviceId: "P002", description: "", quantity: 1, unitPrice: 600, hsnCode: "9904", gstRate: 0 },
   ]);
 
   const addItem = () => {
-    const newItem = { id: items.length + 1, serviceId: "", description: "", quantity: 1, unitPrice: 0 };
+    const newItem = { id: items.length + 1, serviceId: "", description: "", quantity: 1, unitPrice: 0, hsnCode: "", gstRate: 0 };
     setItems([...items, newItem]);
   };
 
@@ -116,7 +148,13 @@ export default function CreateInvoicePage() {
       if (item.id === id) {
         if (field === 'serviceId') {
           const service = services.find(s => s.id === value.toString());
-          return { ...item, serviceId: value.toString(), unitPrice: service ? service.price : 0 };
+          return { 
+            ...item, 
+            serviceId: value.toString(), 
+            unitPrice: service ? service.price : 0,
+            hsnCode: service ? service.hsnCode : "",
+            gstRate: service ? service.gstRate : 0
+          };
         }
         return { ...item, [field]: value };
       }
@@ -128,17 +166,33 @@ export default function CreateInvoicePage() {
     return items.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0);
   };
 
+  const calculateGST = () => {
+    let cgst = 0;
+    let sgst = 0;
+    let igst = 0;
+    
+    items.forEach(item => {
+      const itemTotal = item.quantity * item.unitPrice;
+      const gstAmount = (itemTotal * item.gstRate) / 100;
+      // For intra-state transactions (assuming same state)
+      cgst += gstAmount / 2;
+      sgst += gstAmount / 2;
+    });
+    
+    return { cgst, sgst, igst, totalGst: cgst + sgst + igst };
+  };
+
   const [subtotal, setSubtotal] = useState(0);
-  const [tax, setTax] = useState(0);
+  const [gstDetails, setGstDetails] = useState({ cgst: 0, sgst: 0, igst: 0, totalGst: 0 });
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const newSubtotal = calculateSubtotal();
-    const newTax = newSubtotal * 0.08;
-    const newTotal = newSubtotal + newTax;
+    const newGstDetails = calculateGST();
+    const newTotal = newSubtotal + newGstDetails.totalGst;
 
     setSubtotal(newSubtotal);
-    setTax(newTax);
+    setGstDetails(newGstDetails);
     setTotal(newTotal);
   }, [items]);
 
@@ -166,10 +220,44 @@ export default function CreateInvoicePage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="gstin">GSTIN</Label>
+                      <Input id="gstin" defaultValue="36AABCD1234L1Z5" readOnly />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="state-code">State Code</Label>
+                      <Input id="state-code" defaultValue="36 - Telangana" readOnly />
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="place-of-supply">Place of Supply</Label>
+                      <Input id="place-of-supply" defaultValue="Telangana (36)" readOnly />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="invoice-type-gst">Invoice Type</Label>
+                      <Select defaultValue="regular">
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="regular">Regular</SelectItem>
+                          <SelectItem value="sez">SEZ</SelectItem>
+                          <SelectItem value="export">Export</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="flex-1 space-y-2">
                     <Label htmlFor="invoice-number">Invoice Number</Label>
-                    <Input id="invoice-number" defaultValue="INV-008" readOnly />
+                    <Input id="invoice-number" defaultValue="DRC-INV-008" readOnly />
                   </div>
                   <div className="flex-1 space-y-2">
                     <Label htmlFor="invoice-date">Invoice Date</Label>
@@ -235,9 +323,11 @@ export default function CreateInvoicePage() {
                     <TableRow>
                       <TableHead className="w-[40px]"></TableHead>
                       <TableHead>Description</TableHead>
-                      <TableHead className="w-[100px] text-right">Quantity</TableHead>
-                      <TableHead className="w-[120px] text-right">Unit Price</TableHead>
-                      <TableHead className="w-[120px] text-right">Total</TableHead>
+                      <TableHead className="w-[80px]">HSN Code</TableHead>
+                      <TableHead className="w-[60px] text-right">GST %</TableHead>
+                      <TableHead className="w-[80px] text-right">Quantity</TableHead>
+                      <TableHead className="w-[100px] text-right">Unit Price</TableHead>
+                      <TableHead className="w-[100px] text-right">Total</TableHead>
                       <TableHead className="w-[40px]"></TableHead>
                     </TableRow>
                   </TableHeader>
@@ -256,7 +346,7 @@ export default function CreateInvoicePage() {
                               <SelectContent>
                                 {services.map((service) => (
                                   <SelectItem key={service.id} value={service.id}>
-                                    {service.name} - ${service.price.toFixed(2)}
+                                    {service.name} - ₹{service.price.toFixed(2)} (HSN: {service.hsnCode})
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -271,10 +361,30 @@ export default function CreateInvoicePage() {
                         </TableCell>
                         <TableCell>
                           <Input 
+                            value={item.hsnCode}
+                            className="h-8 text-center"
+                            placeholder="HSN Code"
+                            onChange={(e) => updateItem(item.id, 'hsnCode', e.target.value)}
+                          />
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <Select value={item.gstRate.toString()} onValueChange={(value) => updateItem(item.id, 'gstRate', parseInt(value))}>
+                            <SelectTrigger className="h-8 w-16">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="0">0%</SelectItem>
+                              <SelectItem value="5">5%</SelectItem>
+                              <SelectItem value="18">18%</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </TableCell>
+                        <TableCell>
+                          <Input 
                             type="number" 
                             value={item.quantity} 
                             min="1" 
-                            className="h-8 text-right"
+                            className="h-8 text-right w-20"
                             onChange={(e) => updateItem(item.id, 'quantity', parseInt(e.target.value))}
                           />
                         </TableCell>
@@ -289,7 +399,7 @@ export default function CreateInvoicePage() {
                           />
                         </TableCell>
                         <TableCell className="text-right font-medium">
-                          ${(item.quantity * item.unitPrice).toFixed(2)}
+                          ₹{(item.quantity * item.unitPrice).toFixed(2)}
                         </TableCell>
                         <TableCell>
                           <Button variant="ghost" size="icon" className="h-8 w-8 text-red-500" onClick={() => deleteItem(item.id)}>
@@ -304,20 +414,24 @@ export default function CreateInvoicePage() {
                 <div className="flex flex-col items-end space-y-2">
                   <div className="flex w-full justify-between md:w-1/2">
                     <span className="font-medium">Subtotal:</span>
-                    <span className="font-medium">${subtotal.toFixed(2)}</span>
+                    <span className="font-medium">₹{subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex w-full justify-between md:w-1/2">
-                    <span>Tax (8%):</span>
-                    <span>${tax.toFixed(2)}</span>
+                    <span>CGST:</span>
+                    <span>₹{gstDetails.cgst.toFixed(2)}</span>
+                  </div>
+                  <div className="flex w-full justify-between md:w-1/2">
+                    <span>SGST:</span>
+                    <span>₹{gstDetails.sgst.toFixed(2)}</span>
                   </div>
                   <div className="flex w-full justify-between md:w-1/2">
                     <span>Discount:</span>
-                    <span>-$0.00</span>
+                    <span>-₹0.00</span>
                   </div>
                   <Separator className="w-full md:w-1/2" />
                   <div className="flex w-full justify-between md:w-1/2">
                     <span className="text-lg font-bold">Total:</span>
-                    <span className="text-lg font-bold">${total.toFixed(2)}</span>
+                    <span className="text-lg font-bold">₹{total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
