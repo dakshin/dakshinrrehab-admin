@@ -1,0 +1,20 @@
+
+> medixpro@0.1.0 dev /Users/gandhimac/Sites/dakshinrrehab-admin
+> next dev
+
+   ▲ Next.js 15.2.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.29.107:3000
+
+ ✓ Starting...
+ ✓ Ready in 1526ms
+ ○ Compiling / ...
+ ✓ Compiled / in 5.9s (2998 modules)
+ GET / 200 in 6337ms
+ ✓ Compiled in 526ms (1441 modules)
+ ✓ Compiled in 281ms (1441 modules)
+ GET / 200 in 16ms
+ ✓ Compiled in 160ms (1441 modules)
+ GET / 200 in 11ms
+ ✓ Compiled in 182ms (1441 modules)
+ GET / 200 in 12ms
