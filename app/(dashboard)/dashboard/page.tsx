@@ -21,7 +21,14 @@ export default function DashboardPage() {
   }, []);
 
   const handleLogout = () => {
+    // Clear localStorage
     localStorage.removeItem('currentUser');
+    
+    // Clear authentication cookies
+    document.cookie = 'dakshin-auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'dakshin-user-role=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    
+    // Redirect to login
     router.push('/auth/login');
   };
 

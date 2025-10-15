@@ -9,28 +9,46 @@ const protectedRoutes = [
   '/billing',
   '/settings',
   '/reports',
-  '/superadmin'
+  '/doctors',
+  '/inpatient',
+  '/inventory',
+  '/medical-certificates'
 ];
 
 // Define public routes that don't require authentication
 const publicRoutes = [
   '/auth/login',
   '/auth/register',
-  '/auth/forgot-password',
-  '/'
+  '/auth/forgot-password'
 ];
 
 // Define SuperAdmin only routes
 const superAdminRoutes = [
-  '/superadmin',
-  '/settings/user-roles'
+  '/settings/user-roles',
+  '/settings/system'
 ];
 
 // Define Admin routes (Admin + SuperAdmin)
 const adminRoutes = [
-  '/users',
-  '/settings/system',
-  '/reports/admin'
+  '/settings/user-roles',
+  '/reports/admin',
+  '/settings/system'
+];
+
+// Define Doctor-specific routes
+const doctorRoutes = [
+  '/patients',
+  '/appointments',
+  '/medical-certificates'
+];
+
+// Define Front Desk Staff routes
+const frontDeskRoutes = [
+  '/patients',
+  '/appointments',
+  '/billing',
+  '/inpatient',
+  '/inventory'
 ];
 
 export function middleware(request: NextRequest) {
@@ -42,45 +60,57 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Redirect root to login (we'll handle auth redirect in the component)
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL('/auth/login', request.url));
+  }
+
   // Check if route requires authentication
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
   
   if (isProtectedRoute) {
-    // Check for authentication token (you might need to adjust this based on your auth implementation)
-    const token = request.cookies.get('auth-token')?.value;
+    // Check for authentication token in cookies
+    const authToken = request.cookies.get('dakshin-auth-token')?.value;
+    const userRole = request.cookies.get('dakshin-user-role')?.value;
     
-    if (!token) {
+    if (!authToken) {
       // Redirect to login if no token
       return NextResponse.redirect(new URL('/auth/login', request.url));
     }
 
-    // For now, we'll let authenticated users through
-    // In a real implementation, you'd verify the token and check roles here
-    
-    // Check for SuperAdmin routes
-    const isSuperAdminRoute = superAdminRoutes.some(route => pathname.startsWith(route));
-    if (isSuperAdminRoute) {
-      // You could add role checking logic here
-      // For now, we'll allow access if authenticated
+    // Role-based route protection
+    try {
+      // Check for SuperAdmin routes
+      const isSuperAdminRoute = superAdminRoutes.some(route => pathname.startsWith(route));
+      if (isSuperAdminRoute && userRole !== 'superadmin') {
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+
+      // Check for Admin routes (Admin + SuperAdmin)
+      const isAdminRoute = adminRoutes.some(route => pathname.startsWith(route));
+      if (isAdminRoute && !['admin', 'superadmin'].includes(userRole || '')) {
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+
+      // Check for Doctor routes
+      const isDoctorRoute = doctorRoutes.some(route => pathname.startsWith(route));
+      if (isDoctorRoute && !['doctor', 'admin', 'superadmin'].includes(userRole || '')) {
+        // Front desk staff can access some doctor routes
+        if (userRole === 'frontdesk_staff' && (pathname.startsWith('/patients') || pathname.startsWith('/appointments'))) {
+          return NextResponse.next();
+        }
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+
+      // Check for Front Desk routes
+      const isFrontDeskRoute = frontDeskRoutes.some(route => pathname.startsWith(route));
+      if (isFrontDeskRoute && !['frontdesk_staff', 'admin', 'superadmin'].includes(userRole || '')) {
+        return NextResponse.redirect(new URL('/dashboard', request.url));
+      }
+
       return NextResponse.next();
-    }
-
-    // Check for Admin routes  
-    const isAdminRoute = adminRoutes.some(route => pathname.startsWith(route));
-    if (isAdminRoute) {
-      // You could add role checking logic here
-      return NextResponse.next();
-    }
-
-    return NextResponse.next();
-  }
-
-  // Redirect root to dashboard if authenticated, login if not
-  if (pathname === '/') {
-    const token = request.cookies.get('auth-token')?.value;
-    if (token) {
-      return NextResponse.redirect(new URL('/dashboard', request.url));
-    } else {
+    } catch (error) {
+      // If there's any error in role checking, redirect to login
       return NextResponse.redirect(new URL('/auth/login', request.url));
     }
   }

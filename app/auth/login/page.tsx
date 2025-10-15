@@ -72,8 +72,13 @@ export default function LoginPage() {
       if (user && user.password === password) {
         setSuccess(`Welcome back, ${user.name}!`)
         
-        // Store simple user data
-        localStorage.setItem('currentUser', JSON.stringify({ email, role: user.role, name: user.name }))
+        // Store user data in localStorage
+        const userData = { email, role: user.role, name: user.name };
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+        
+        // Set authentication cookies for middleware
+        document.cookie = `dakshin-auth-token=authenticated-${Date.now()}; path=/; max-age=86400`; // 24 hours
+        document.cookie = `dakshin-user-role=${user.role}; path=/; max-age=86400`; // 24 hours
         
         // Redirect based on role
         setTimeout(() => {
